@@ -6,103 +6,126 @@ import SectionWrapper from "@/components/ui/SectionWrapper";
 import Container from "@/components/ui/Container";
 import { SKILL_GROUPS } from "@/lib/data";
 
+// Soft-color themes matching About section's stat card palette
+const groupColors = [
+  { border: "border-blue-100/80 hover:border-blue-300",       icon: "bg-blue-50 text-blue-600",       bar: "bg-blue-500"    },
+  { border: "border-purple-100/80 hover:border-purple-300",   icon: "bg-purple-50 text-purple-600",   bar: "bg-purple-500"  },
+  { border: "border-emerald-100/80 hover:border-emerald-300", icon: "bg-emerald-50 text-emerald-600", bar: "bg-emerald-500" },
+  { border: "border-orange-100/80 hover:border-orange-300",   icon: "bg-orange-50 text-orange-600",   bar: "bg-orange-500"  },
+  { border: "border-rose-100/80 hover:border-rose-300",       icon: "bg-rose-50 text-rose-600",       bar: "bg-rose-500"    },
+  { border: "border-indigo-100/80 hover:border-indigo-300",   icon: "bg-indigo-50 text-indigo-600",   bar: "bg-indigo-500"  },
+];
+
 const iconMap: Record<string, React.ElementType> = {
   Code2, Globe, BrainCircuit, Database, BookOpen, Cloud,
 };
 
 export default function Skills() {
   return (
-    <section id="skills" className="w-full bg-neutral-50/60 py-32 md:py-40 flex justify-center">
-      <Container className="flex flex-col items-center">
-        {/* Centered section header */}
-        <SectionWrapper>
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="label-caps mb-3">Capabilities</p>
-            <h2 className="section-heading mb-4 text-neutral-950">
-              Skills &amp; Expertise
-            </h2>
-            <p className="text-neutral-600 text-base sm:text-lg leading-relaxed">
-              Proficient across modern software engineering stacks — from AI pipelines and data analysis to mobile apps and cloud deployment.
-            </p>
+    <section id="skills" className="w-full bg-white py-20 md:py-28 flex justify-center overflow-hidden">
+      <Container>
+        <div className="w-full max-w-6xl mx-auto flex flex-col gap-14 sm:gap-16">
+
+          {/* ── Header Row: Left text + Right empty space ── same as About & Academic ── */}
+          {/* ── Header Row ── */}
+          <div className="w-full">
+            <SectionWrapper delay={0.05} className="max-w-2xl">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-6 h-[2px] bg-blue-600" />
+                <span className="text-xs font-bold text-blue-600 tracking-wider uppercase">
+                  Capabilities
+                </span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl lg:text-[3rem] font-extrabold text-neutral-950 tracking-tight leading-[1.1] mb-4">
+                Skills &amp; Expertise
+              </h2>
+              <p className="text-neutral-600 text-base sm:text-lg leading-relaxed max-w-xl">
+                Proficient across modern software engineering stacks — from AI pipelines and data analysis
+                to mobile apps and cloud deployment.
+              </p>
+            </SectionWrapper>
           </div>
-        </SectionWrapper>
 
-        {/* Centered grid of skill groups */}
-        <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {SKILL_GROUPS.map((group, gi) => {
-            const Icon = iconMap[group.icon] ?? Code2;
-            return (
-              <motion.div
-                key={group.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.45, delay: gi * 0.06, type: "tween" }}
-                whileHover={{ y: -2 }}
-                className="portfolio-card p-6 sm:p-7 flex flex-col justify-between w-full"
-              >
-                <div>
-                  <div className="flex items-center gap-3.5 mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
-                      <Icon size={18} className="text-neutral-900" />
-                    </div>
-                    <h3 className="font-bold text-base text-neutral-950">{group.category}</h3>
-                  </div>
-
-                  <div className="space-y-4">
-                    {group.skills.map((skill, si) => (
-                      <div key={skill.name}>
-                        <div className="flex justify-between items-center mb-1.5 text-xs font-medium">
-                          <span className="text-neutral-700">{skill.name}</span>
-                          <span className="text-neutral-400 font-mono">{skill.level}%</span>
-                        </div>
-                        {/* Clean monochrome progress bar */}
-                        <div className="skill-track">
-                          <motion.div
-                            className="skill-fill"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.level}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: gi * 0.05 + si * 0.06, type: "tween" }}
-                          />
-                        </div>
+          {/* ── Skill Group Cards ── */}
+          <SectionWrapper delay={0.15}>
+            <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {SKILL_GROUPS.map((group, gi) => {
+                const Icon = iconMap[group.icon] ?? Code2;
+                const color = groupColors[gi % groupColors.length];
+                return (
+                  <motion.div
+                    key={group.category}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.45, delay: gi * 0.06, type: "tween" }}
+                    whileHover={{ y: -2 }}
+                    className={`portfolio-card p-8 sm:p-9 lg:p-10 bg-white border transition-all duration-300 flex flex-col w-full ${color.border}`}
+                  >
+                    {/* Icon + Category name */}
+                    <div className="flex items-center gap-3.5 mb-7">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${color.icon}`}>
+                        <Icon size={18} />
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                      <h3 className="font-bold text-base text-neutral-950">{group.category}</h3>
+                    </div>
 
-        {/* Centered technology tags cloud */}
-        <SectionWrapper delay={0.25}>
-          <div className="mt-16 text-center w-full">
-            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-5">
-              Tools &amp; Frameworks
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto">
-              {[
-                "Python", "Flutter", "React", "Next.js", "Node.js", "TypeScript",
-                "MySQL", "PostgreSQL", "MongoDB", "Git", "Solidity",
-                "OpenCV", "scikit-learn", "Socket.io", "AWS", "Tailwind CSS",
-                "REST APIs", "C++", "C", "Docker Basics",
-              ].map((s, i) => (
-                <motion.span
-                  key={s}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.02, type: "tween" }}
-                  whileHover={{ scale: 1.05, y: -1 }}
-                  className="chip cursor-default"
-                >
-                  {s}
-                </motion.span>
-              ))}
+                    {/* Skills list with progress bars */}
+                    <div className="space-y-5">
+                      {group.skills.map((skill, si) => (
+                        <div key={skill.name}>
+                          <div className="flex justify-between items-center mb-2 text-xs font-medium">
+                            <span className="text-neutral-700">{skill.name}</span>
+                            <span className="text-neutral-400 font-mono">{skill.level}%</span>
+                          </div>
+                          <div className="h-[5px] bg-neutral-100 rounded-full overflow-hidden">
+                            <motion.div
+                              className={`h-full rounded-full ${color.bar}`}
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${skill.level}%` }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.8, delay: gi * 0.05 + si * 0.06, type: "tween" }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
-          </div>
-        </SectionWrapper>
+          </SectionWrapper>
+
+          {/* ── Tech tag cloud ── */}
+          <SectionWrapper delay={0.25}>
+            <div className="w-full">
+              <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-5">
+                Tools &amp; Frameworks
+              </p>
+              <div className="flex flex-wrap gap-2.5 max-w-4xl">
+                {[
+                  "Python", "Flutter", "React", "Next.js", "Node.js", "TypeScript",
+                  "MySQL", "PostgreSQL", "MongoDB", "Git", "Solidity",
+                  "OpenCV", "scikit-learn", "Socket.io", "AWS", "Tailwind CSS",
+                  "REST APIs", "C++", "C", "Docker Basics",
+                ].map((s, i) => (
+                  <motion.span
+                    key={s}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.02, type: "tween" }}
+                    whileHover={{ scale: 1.05, y: -1 }}
+                    className="chip cursor-default"
+                  >
+                    {s}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </SectionWrapper>
+
+        </div>
       </Container>
     </section>
   );

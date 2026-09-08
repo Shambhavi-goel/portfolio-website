@@ -4,40 +4,49 @@ import { useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, Star } from "lucide-react";
 import CarouselSection from "@/components/ui/CarouselSection";
-import ProjectModal from "@/components/ProjectModal";
-import { PROJECTS, type Project } from "@/data/projects";
+import Lightbox, { type LightboxItem } from "@/components/Lightbox";
+import { CERTIFICATES, type CertificateItem } from "@/data/certificates";
 
-export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+export default function CertificateGallery() {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const lightboxItems: LightboxItem[] = CERTIFICATES.map((cert) => ({
+    id: cert.id,
+    title: cert.title,
+    image: cert.image,
+    subtitle: `${cert.issuer} · ${cert.year}`,
+    description: cert.detail,
+    tag: cert.type.toUpperCase(),
+  }));
 
   return (
     <>
       <CarouselSection
-        id="projects"
-        badge="Portfolio"
-        title="Projects"
-        description="End-to-end applications built for real-world utility across AI/ML, web, mobile, and blockchain systems."
+        id="certificates"
+        badge="Credentials"
+        title="Certificates & Honors"
+        description="Verified academic scholarships, competitive hackathon awards, and cloud architecture credentials."
       >
-        {PROJECTS.map((project: Project) => (
+        {CERTIFICATES.map((cert: CertificateItem, index: number) => (
           <article
-            key={project.id}
-            onClick={() => setSelectedProject(project)}
+            key={cert.id}
+            onClick={() => setSelectedIndex(index)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                setSelectedProject(project);
+                setSelectedIndex(index);
               }
             }}
             tabIndex={0}
             role="button"
-            aria-label={`View project details: ${project.title}`}
+            aria-label={`View certificate: ${cert.title}`}
             className="carousel-card relative w-[300px] sm:w-[340px] md:w-[360px] h-[450px] shrink-0 snap-start rounded-[28px] overflow-hidden group cursor-pointer border border-neutral-200/80 shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 select-none"
           >
-            {/* Background Image */}
+            {/* Certificate Preview Image */}
             <div className="absolute inset-0 bg-neutral-900 overflow-hidden">
               <Image
-                src={project.image}
-                alt={project.title}
+                src={cert.image}
+                alt={cert.title}
                 fill
                 sizes="(max-width: 640px) 300px, 360px"
                 className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
@@ -47,10 +56,10 @@ export default function Projects() {
             {/* Subtle Top Gradient for Contrast */}
             <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
 
-            {/* Top Row: Category tag + Top-Right Glass Arrow Button */}
+            {/* Top Row: Type tag + Top-Right Glass Arrow Button */}
             <div className="absolute top-6 inset-x-6 flex items-center justify-between z-10 pointer-events-none">
-              <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-black/40 backdrop-blur-md text-white border border-white/15">
-                {project.tags[0]}
+              <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-black/40 backdrop-blur-md text-white border border-white/15 capitalize">
+                {cert.type}
               </span>
 
               <span className="w-10 h-10 rounded-full bg-white/25 group-hover:bg-white text-white group-hover:text-neutral-950 backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-300 shadow-md transform group-hover:scale-110">
@@ -60,7 +69,7 @@ export default function Projects() {
 
             {/* Bottom Frosted Gradient Overlay matching reference */}
             <div className="absolute inset-x-0 bottom-0 pt-20 pb-7 px-7 z-10 bg-gradient-to-t from-black/95 via-black/70 to-transparent flex flex-col justify-end">
-              {/* 5 Orange Stars from reference design */}
+              {/* 5 Golden Stars matching reference design */}
               <div className="flex items-center gap-1 mb-2">
                 {[...Array(5)].map((_, idx) => (
                   <Star
@@ -73,39 +82,31 @@ export default function Projects() {
 
               {/* Title */}
               <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug group-hover:text-blue-200 transition-colors">
-                {project.title}
+                {cert.title}
               </h3>
 
-              {/* Subtitle / Tagline */}
-              <p className="text-xs sm:text-sm text-neutral-300 mt-1 line-clamp-2 leading-relaxed">
-                {project.tagline}
+              {/* Issuer & Year */}
+              <p className="text-xs sm:text-sm text-neutral-300 mt-1 leading-relaxed">
+                {cert.issuer} · {cert.year}
               </p>
 
-              {/* Tech stack pills */}
-              <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-white/10">
-                {project.techStack.slice(0, 3).map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-[10px] sm:text-[11px] font-medium text-neutral-300 bg-white/10 px-2 py-0.5 rounded-md"
-                  >
-                    {tech}
-                  </span>
-                ))}
-                {project.techStack.length > 3 && (
-                  <span className="text-[10px] sm:text-[11px] font-medium text-neutral-400 bg-white/5 px-1.5 py-0.5 rounded-md">
-                    +{project.techStack.length - 3}
-                  </span>
-                )}
-              </div>
+              {/* Short Detail snippet */}
+              {cert.detail && (
+                <p className="text-xs text-neutral-400 mt-2 line-clamp-2 leading-relaxed pt-2 border-t border-white/10">
+                  {cert.detail}
+                </p>
+              )}
             </div>
           </article>
         ))}
       </CarouselSection>
 
-      {/* Detail Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
+      {/* Lightbox for Certificates */}
+      <Lightbox
+        items={lightboxItems}
+        currentIndex={selectedIndex}
+        onClose={() => setSelectedIndex(null)}
+        onNavigate={(index) => setSelectedIndex(index)}
       />
     </>
   );

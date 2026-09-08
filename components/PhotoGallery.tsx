@@ -4,40 +4,49 @@ import { useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, Star } from "lucide-react";
 import CarouselSection from "@/components/ui/CarouselSection";
-import ProjectModal from "@/components/ProjectModal";
-import { PROJECTS, type Project } from "@/data/projects";
+import Lightbox, { type LightboxItem } from "@/components/Lightbox";
+import { GALLERY_PHOTOS, type GalleryPhoto } from "@/data/gallery";
 
-export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+export default function PhotoGallery() {
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
+
+  const lightboxItems: LightboxItem[] = GALLERY_PHOTOS.map((photo) => ({
+    id: photo.id,
+    title: photo.title,
+    image: photo.image,
+    subtitle: `${photo.category} · ${photo.date}`,
+    description: photo.caption,
+    tag: photo.category,
+  }));
 
   return (
     <>
       <CarouselSection
-        id="projects"
-        badge="Portfolio"
-        title="Projects"
-        description="End-to-end applications built for real-world utility across AI/ML, web, mobile, and blockchain systems."
+        id="gallery"
+        badge="Moments & Community"
+        title="Life & Hackathons"
+        description="Snapshots from 36-hour hackathons, prototype showcases, scholarship ceremonies, and engineering communities."
       >
-        {PROJECTS.map((project: Project) => (
+        {GALLERY_PHOTOS.map((photo: GalleryPhoto, index: number) => (
           <article
-            key={project.id}
-            onClick={() => setSelectedProject(project)}
+            key={photo.id}
+            onClick={() => setSelectedPhotoIndex(index)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                setSelectedProject(project);
+                setSelectedPhotoIndex(index);
               }
             }}
             tabIndex={0}
             role="button"
-            aria-label={`View project details: ${project.title}`}
+            aria-label={`View full photo: ${photo.title}`}
             className="carousel-card relative w-[300px] sm:w-[340px] md:w-[360px] h-[450px] shrink-0 snap-start rounded-[28px] overflow-hidden group cursor-pointer border border-neutral-200/80 shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 select-none"
           >
-            {/* Background Image */}
+            {/* Gallery Photo */}
             <div className="absolute inset-0 bg-neutral-900 overflow-hidden">
               <Image
-                src={project.image}
-                alt={project.title}
+                src={photo.image}
+                alt={photo.title}
                 fill
                 sizes="(max-width: 640px) 300px, 360px"
                 className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
@@ -50,7 +59,7 @@ export default function Projects() {
             {/* Top Row: Category tag + Top-Right Glass Arrow Button */}
             <div className="absolute top-6 inset-x-6 flex items-center justify-between z-10 pointer-events-none">
               <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-black/40 backdrop-blur-md text-white border border-white/15">
-                {project.tags[0]}
+                {photo.category}
               </span>
 
               <span className="w-10 h-10 rounded-full bg-white/25 group-hover:bg-white text-white group-hover:text-neutral-950 backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-300 shadow-md transform group-hover:scale-110">
@@ -60,7 +69,7 @@ export default function Projects() {
 
             {/* Bottom Frosted Gradient Overlay matching reference */}
             <div className="absolute inset-x-0 bottom-0 pt-20 pb-7 px-7 z-10 bg-gradient-to-t from-black/95 via-black/70 to-transparent flex flex-col justify-end">
-              {/* 5 Orange Stars from reference design */}
+              {/* 5 Golden Stars matching reference design */}
               <div className="flex items-center gap-1 mb-2">
                 {[...Array(5)].map((_, idx) => (
                   <Star
@@ -73,39 +82,29 @@ export default function Projects() {
 
               {/* Title */}
               <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug group-hover:text-blue-200 transition-colors">
-                {project.title}
+                {photo.title}
               </h3>
 
-              {/* Subtitle / Tagline */}
-              <p className="text-xs sm:text-sm text-neutral-300 mt-1 line-clamp-2 leading-relaxed">
-                {project.tagline}
+              {/* Subtitle / Date */}
+              <p className="text-xs sm:text-sm text-neutral-300 mt-1 leading-relaxed">
+                {photo.category} · {photo.date}
               </p>
 
-              {/* Tech stack pills */}
-              <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-white/10">
-                {project.techStack.slice(0, 3).map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-[10px] sm:text-[11px] font-medium text-neutral-300 bg-white/10 px-2 py-0.5 rounded-md"
-                  >
-                    {tech}
-                  </span>
-                ))}
-                {project.techStack.length > 3 && (
-                  <span className="text-[10px] sm:text-[11px] font-medium text-neutral-400 bg-white/5 px-1.5 py-0.5 rounded-md">
-                    +{project.techStack.length - 3}
-                  </span>
-                )}
-              </div>
+              {/* Caption */}
+              <p className="text-xs text-neutral-400 mt-2 line-clamp-2 leading-relaxed pt-2 border-t border-white/10">
+                {photo.caption}
+              </p>
             </div>
           </article>
         ))}
       </CarouselSection>
 
-      {/* Detail Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
+      {/* Lightbox for Photos */}
+      <Lightbox
+        items={lightboxItems}
+        currentIndex={selectedPhotoIndex}
+        onClose={() => setSelectedPhotoIndex(null)}
+        onNavigate={(index) => setSelectedPhotoIndex(index)}
       />
     </>
   );

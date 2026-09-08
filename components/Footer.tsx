@@ -1,70 +1,60 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mail, Heart } from "lucide-react";
+import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
-import { NAV_LINKS, SOCIAL } from "@/lib/data";
-import Container from "@/components/ui/Container";
+import { SOCIAL } from "@/lib/data";
 
-export default function Footer() {
-  const year = new Date().getFullYear();
+export default function BottomBar() {
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-neutral-200 bg-white py-12 md:py-16">
-      <Container>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo */}
+    <footer
+      className="w-full bg-[#f4f5f8] border-t border-neutral-200/80 flex items-center justify-center px-4 sm:px-8"
+      style={{ height: "1.5cm", minHeight: "1.5cm" }}
+    >
+      <div className="w-full max-w-6xl mx-auto flex items-center justify-between gap-4 text-xs sm:text-sm">
+        {/* Brand / Copyright */}
+        <div className="flex items-center gap-2 text-neutral-600 font-medium">
+          <span className="font-bold text-neutral-900">Shambhavi Goel</span>
+          <span>·</span>
+          <span>© {currentYear} All rights reserved</span>
+        </div>
+
+        {/* Basic Contact Details Only */}
+        <div className="flex items-center gap-3 sm:gap-4">
           <a
-            href="#"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="text-lg font-bold text-neutral-950 hover:opacity-80 transition-opacity"
+            href={`mailto:${SOCIAL.email}`}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-700 hover:text-blue-600 font-medium transition-colors shadow-2xs hover:shadow-xs"
+            aria-label="Send email"
           >
-            Shambhavi Goel
+            <Mail size={14} className="text-blue-600" />
+            <span className="hidden sm:inline">{SOCIAL.email}</span>
+            <span className="sm:hidden">Email</span>
           </a>
 
-          {/* Nav */}
-          <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => { e.preventDefault(); document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" }); }}
-                className="text-sm text-neutral-500 hover:text-neutral-950 transition-colors duration-150 font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+          <a
+            href={SOCIAL.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-700 hover:text-indigo-600 font-medium transition-colors shadow-2xs hover:shadow-xs"
+            aria-label="LinkedIn profile"
+          >
+            <LinkedinIcon width={14} height={14} className="text-indigo-600" />
+            <span>LinkedIn</span>
+          </a>
 
-          {/* Socials */}
-          <div className="flex items-center gap-5">
-            {[
-              { icon: GithubIcon,   href: SOCIAL.github,            label: "GitHub" },
-              { icon: LinkedinIcon, href: SOCIAL.linkedin,          label: "LinkedIn" },
-              { icon: Mail,         href: `mailto:${SOCIAL.email}`, label: "Email" },
-            ].map(({ icon: Icon, href, label }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target={href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                aria-label={label}
-                whileHover={{ y: -2 }}
-                className="text-neutral-500 hover:text-neutral-950 transition-colors duration-150"
-              >
-                <Icon width={18} height={18} />
-              </motion.a>
-            ))}
-          </div>
+          <a
+            href={SOCIAL.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-700 hover:text-neutral-950 font-medium transition-colors shadow-2xs hover:shadow-xs"
+            aria-label="GitHub profile"
+          >
+            <GithubIcon width={14} height={14} className="text-neutral-800" />
+            <span>GitHub</span>
+          </a>
         </div>
-
-        <div className="mt-10 pt-6 border-t border-neutral-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-400">
-          <p>© {year} Shambhavi Goel. All rights reserved.</p>
-          <p className="flex items-center gap-1.5">
-            Designed &amp; Built with Next.js &amp; Tailwind CSS
-          </p>
-        </div>
-      </Container>
+      </div>
     </footer>
   );
 }

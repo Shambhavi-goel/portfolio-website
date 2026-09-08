@@ -1,9 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import AcademicTimeline from "@/components/AcademicTimeline";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import Certifications from "@/components/Certifications";
+import CertificateGallery from "@/components/CertificateGallery";
+import PhotoGallery from "@/components/PhotoGallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -11,19 +13,59 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+
+      {/* Main Content */}
+      <main className="w-full">
+        {/* 1. Hero Section */}
         <Hero />
-        <div className="section-divider" />
+
+        {/* Whitespace between Hero and About */}
+        <div className="h-10 sm:h-12 lg:h-16" aria-hidden="true" />
+
+        {/* 2. About Section */}
         <About />
-        <div className="section-divider" />
+
+        {/* Generous whitespace between About and Academic Background */}
+        <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
+
+        {/* 3. Academic Background */}
+        <AcademicTimeline />
+
+        {/* Generous whitespace between Academic Background and Skills */}
+        <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
+
+        {/* 4. Skills & Expertise */}
         <Skills />
-        <div className="section-divider" />
+
+        {/* Generous whitespace between Skills and Projects */}
+        <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
+
+        {/* 5. Projects Carousel */}
         <Projects />
-        <div className="section-divider" />
-        <Certifications />
-        <div className="section-divider" />
+
+        {/* Generous whitespace between Projects and Certificates */}
+        <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
+
+        {/* 6. Certificates & Honors Carousel */}
+        <CertificateGallery />
+
+        {/* Generous whitespace between Certificates and Life & Hackathons */}
+        <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
+
+        {/* 7. Life & Hackathons Carousel */}
+        <PhotoGallery />
+
+        {/* Generous whitespace between Life & Hackathons and Contact */}
+        <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
+
+        {/* 8. Contact Section */}
         <Contact />
       </main>
+
+      {/* Generous whitespace before Footer */}
+      <div className="h-20 sm:h-28 lg:h-36" aria-hidden="true" />
+
+      {/* 9. Bottom Bar */}
       <Footer />
     </>
   );

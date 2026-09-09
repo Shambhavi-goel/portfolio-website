@@ -6,6 +6,7 @@ import {
   Eye,
   Download,
   Mail,
+  Phone,
   ArrowRight,
   Brain,
   Code2,
@@ -42,6 +43,7 @@ const socials = [
   { icon: GithubIcon, href: SOCIAL.github, label: "GitHub" },
   { icon: LinkedinIcon, href: SOCIAL.linkedin, label: "LinkedIn" },
   { icon: Mail, href: `mailto:${SOCIAL.email}`, label: "Email" },
+  { icon: Phone, href: `tel:${SOCIAL.phoneHref}`, label: "Phone" },
 ];
 
 export default function Hero() {
@@ -124,25 +126,37 @@ export default function Hero() {
               </div>
             </FadeUp>
 
-            {/* 5. Socials & Email Row */}
+            {/* 5. Socials, Email & Phone Row */}
             <FadeUp delay={0.4}>
-              <div className="flex items-center gap-4 text-neutral-600">
-                {socials.map(({ icon: Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target={href.startsWith("mailto") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="p-1 text-neutral-500 hover:text-neutral-950 transition-colors duration-150 hover:scale-110"
-                  >
-                    <Icon width={20} height={20} />
-                  </a>
-                ))}
-                <span className="w-px h-5 bg-neutral-300" />
-                <span className="text-xs sm:text-sm text-neutral-500 font-medium select-all">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-neutral-600">
+                <div className="flex items-center gap-3">
+                  {socials.map(({ icon: Icon, href, label }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target={href.startsWith("mailto") || href.startsWith("tel") ? undefined : "_blank"}
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="p-1 text-neutral-500 hover:text-neutral-950 transition-colors duration-150 hover:scale-110"
+                    >
+                      <Icon width={20} height={20} />
+                    </a>
+                  ))}
+                </div>
+                <span className="w-px h-5 bg-neutral-300 hidden sm:inline-block" />
+                <a
+                  href={`mailto:${SOCIAL.email}`}
+                  className="text-xs sm:text-sm text-neutral-600 hover:text-neutral-950 font-medium transition-colors"
+                >
                   {SOCIAL.email}
-                </span>
+                </a>
+                <span className="w-px h-5 bg-neutral-300 hidden sm:inline-block" />
+                <a
+                  href={`tel:${SOCIAL.phoneHref}`}
+                  className="text-xs sm:text-sm text-neutral-600 hover:text-neutral-950 font-medium transition-colors"
+                >
+                  {SOCIAL.phone}
+                </a>
               </div>
             </FadeUp>
 

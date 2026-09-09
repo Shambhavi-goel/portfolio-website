@@ -8,12 +8,12 @@ import { SKILL_GROUPS } from "@/lib/data";
 
 // Soft-color themes matching About section's stat card palette
 const groupColors = [
-  { border: "border-blue-100/80 hover:border-blue-300",       icon: "bg-blue-50 text-blue-600",       bar: "bg-blue-500"    },
-  { border: "border-purple-100/80 hover:border-purple-300",   icon: "bg-purple-50 text-purple-600",   bar: "bg-purple-500"  },
+  { border: "border-blue-100/80 hover:border-blue-300", icon: "bg-blue-50 text-blue-600", bar: "bg-blue-500" },
+  { border: "border-purple-100/80 hover:border-purple-300", icon: "bg-purple-50 text-purple-600", bar: "bg-purple-500" },
   { border: "border-emerald-100/80 hover:border-emerald-300", icon: "bg-emerald-50 text-emerald-600", bar: "bg-emerald-500" },
-  { border: "border-orange-100/80 hover:border-orange-300",   icon: "bg-orange-50 text-orange-600",   bar: "bg-orange-500"  },
-  { border: "border-rose-100/80 hover:border-rose-300",       icon: "bg-rose-50 text-rose-600",       bar: "bg-rose-500"    },
-  { border: "border-indigo-100/80 hover:border-indigo-300",   icon: "bg-indigo-50 text-indigo-600",   bar: "bg-indigo-500"  },
+  { border: "border-orange-100/80 hover:border-orange-300", icon: "bg-orange-50 text-orange-600", bar: "bg-orange-500" },
+  { border: "border-rose-100/80 hover:border-rose-300", icon: "bg-rose-50 text-rose-600", bar: "bg-rose-500" },
+  { border: "border-indigo-100/80 hover:border-indigo-300", icon: "bg-indigo-50 text-indigo-600", bar: "bg-indigo-500" },
 ];
 
 const iconMap: Record<string, React.ElementType> = {
@@ -101,12 +101,15 @@ export default function Skills() {
           <SectionWrapper delay={0.25}>
             <div
               className="portfolio-card bg-white border border-neutral-200/80 rounded-3xl shadow-xs w-full"
-              style={{ padding: "clamp(1.75rem, 3vw, 2.5rem)" }}
+              style={{ padding: "clamp(2rem, 3.5vw, 3rem)" }}
             >
-              <p className="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-5">
+              <p
+                className="text-sm sm:text-base font-bold uppercase tracking-wider text-neutral-700 mb-6"
+                style={{ marginBottom: "1.25rem" }}
+              >
                 Tools, Libraries &amp; Frameworks
               </p>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-3 sm:gap-3.5">
                 {[
                   "Python", "Flutter", "React", "Next.js", "Node.js", "TypeScript",
                   "MySQL", "PostgreSQL", "MongoDB", "Git",
@@ -120,7 +123,7 @@ export default function Skills() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.02, type: "tween" }}
                     whileHover={{ scale: 1.05, y: -1 }}
-                    className="chip cursor-default px-3.5 py-1.5 text-xs sm:text-sm font-medium"
+                    className="chip cursor-default px-4 py-2 text-xs sm:text-sm font-medium"
                   >
                     {s}
                   </motion.span>

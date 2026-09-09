@@ -77,7 +77,7 @@ export default function Lightbox({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 modal-backdrop"
+            className="fixed inset-0 bg-black/85 backdrop-blur-md"
             aria-hidden="true"
           />
 
@@ -90,37 +90,30 @@ export default function Lightbox({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 350, damping: 28 }}
-            className="relative z-10 w-full max-w-4xl max-h-[92vh] flex flex-col items-center bg-neutral-950/95 rounded-2xl border border-neutral-800 shadow-2xl overflow-hidden"
+            className="relative z-10 w-full max-w-4xl max-h-[92vh] flex flex-col items-center bg-neutral-950 rounded-2xl border border-neutral-800 shadow-2xl overflow-hidden"
           >
-            {/* Top Bar: Title & Close Button */}
-            <div className="w-full flex items-center justify-between px-6 py-4 border-b border-neutral-800/80 bg-neutral-900/50 backdrop-blur-md">
-              <div className="flex items-center gap-3">
-                {currentItem.tag && (
-                  <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-neutral-800 text-neutral-300 border border-neutral-700">
-                    {currentItem.tag}
-                  </span>
-                )}
-                <h3 className="text-sm sm:text-base font-semibold text-white truncate max-w-md">
-                  {currentItem.title}
-                </h3>
-              </div>
+            {/* Top Bar: Balanced 4-sided spacing with Centered Title */}
+            <div className="w-full flex items-center justify-between px-6 sm:px-10 py-5 sm:py-6 border-b border-neutral-800/80 bg-neutral-900/90 backdrop-blur-md">
+              {/* Left placeholder for symmetric centering */}
+              <div className="w-10 shrink-0" aria-hidden="true" />
 
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-neutral-400 font-mono hidden sm:inline mr-2">
-                  {currentIndex + 1} / {items.length}
-                </span>
-                <button
-                  onClick={onClose}
-                  aria-label="Close modal"
-                  className="p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors"
-                >
-                  <X size={18} />
-                </button>
-              </div>
+              {/* Title with generous spacing on all sides */}
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-white text-center truncate max-w-2xl px-4 flex-1 tracking-tight leading-relaxed">
+                {currentItem.title}
+              </h3>
+
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                aria-label="Close modal"
+                className="w-10 h-10 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors flex items-center justify-center shrink-0 cursor-pointer"
+              >
+                <X size={20} />
+              </button>
             </div>
 
-            {/* Main Stage: Image with Left & Right Arrows */}
-            <div className="relative w-full flex-1 min-h-[300px] max-h-[62vh] sm:max-h-[66vh] bg-black/40 flex items-center justify-center p-4 sm:p-6 overflow-hidden">
+            {/* Main Stage: Certificate with generous margin from edges */}
+            <div className="relative w-full flex-1 min-h-[300px] max-h-[66vh] sm:max-h-[72vh] bg-neutral-950 flex items-center justify-center p-6 sm:p-10 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentItem.id}
@@ -135,7 +128,7 @@ export default function Lightbox({
                     alt={currentItem.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 900px"
-                    className="object-contain"
+                    className="object-contain drop-shadow-md"
                     priority
                   />
                 </motion.div>
@@ -150,9 +143,9 @@ export default function Lightbox({
                       handlePrev();
                     }}
                     aria-label="Previous item"
-                    className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-neutral-900/80 hover:bg-neutral-800 text-white backdrop-blur-md border border-neutral-700/60 transition-all hover:scale-110 shadow-lg"
+                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-neutral-900/90 hover:bg-neutral-800 text-white backdrop-blur-md border border-neutral-700/60 transition-all hover:scale-110 shadow-lg cursor-pointer flex items-center justify-center"
                   >
-                    <ChevronLeft size={20} />
+                    <ChevronLeft size={22} />
                   </button>
 
                   <button
@@ -161,30 +154,29 @@ export default function Lightbox({
                       handleNext();
                     }}
                     aria-label="Next item"
-                    className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-neutral-900/80 hover:bg-neutral-800 text-white backdrop-blur-md border border-neutral-700/60 transition-all hover:scale-110 shadow-lg"
+                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-neutral-900/90 hover:bg-neutral-800 text-white backdrop-blur-md border border-neutral-700/60 transition-all hover:scale-110 shadow-lg cursor-pointer flex items-center justify-center"
                   >
-                    <ChevronRight size={20} />
+                    <ChevronRight size={22} />
                   </button>
                 </>
               )}
             </div>
 
-            {/* Bottom Caption Bar */}
-            <div className="w-full px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/80 text-left">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
-                <p className="text-sm font-bold text-white">{currentItem.title}</p>
+            {/* Bottom Caption Bar (Centered, only if subtitle or description exists) */}
+            {(currentItem.subtitle || currentItem.description) && (
+              <div className="w-full px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/90 text-center">
                 {currentItem.subtitle && (
-                  <p className="text-xs text-neutral-400 font-medium">
+                  <p className="text-xs text-neutral-400 font-medium mb-1">
                     {currentItem.subtitle}
                   </p>
                 )}
+                {currentItem.description && (
+                  <p className="text-xs text-neutral-400 leading-relaxed max-w-2xl mx-auto">
+                    {currentItem.description}
+                  </p>
+                )}
               </div>
-              {currentItem.description && (
-                <p className="text-xs text-neutral-400 leading-relaxed max-w-3xl">
-                  {currentItem.description}
-                </p>
-              )}
-            </div>
+            )}
           </motion.div>
         </div>
       )}

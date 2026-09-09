@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { SOCIAL } from "@/lib/data";
 
@@ -21,15 +21,25 @@ export default function BottomBar() {
         </div>
 
         {/* Basic Contact Details Only */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-4">
+          <a
+            href={`tel:${SOCIAL.phoneHref}`}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-700 hover:text-emerald-600 font-medium transition-colors shadow-2xs hover:shadow-xs"
+            aria-label="Call or WhatsApp"
+          >
+            <Phone size={14} className="text-emerald-600" />
+            <span className="hidden md:inline">{SOCIAL.phone}</span>
+            <span className="md:hidden">Call</span>
+          </a>
+
           <a
             href={`mailto:${SOCIAL.email}`}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-700 hover:text-blue-600 font-medium transition-colors shadow-2xs hover:shadow-xs"
             aria-label="Send email"
           >
             <Mail size={14} className="text-blue-600" />
-            <span className="hidden sm:inline">{SOCIAL.email}</span>
-            <span className="sm:hidden">Email</span>
+            <span className="hidden md:inline">{SOCIAL.email}</span>
+            <span className="md:hidden">Email</span>
           </a>
 
           <a

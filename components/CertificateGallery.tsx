@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Star } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import CarouselSection from "@/components/ui/CarouselSection";
 import Lightbox, { type LightboxItem } from "@/components/Lightbox";
 import { CERTIFICATES, type CertificateItem } from "@/data/certificates";
@@ -14,9 +14,6 @@ export default function CertificateGallery() {
     id: cert.id,
     title: cert.title,
     image: cert.image,
-    subtitle: `${cert.issuer} · ${cert.year}`,
-    description: cert.detail,
-    tag: cert.type.toUpperCase(),
   }));
 
   return (
@@ -25,7 +22,7 @@ export default function CertificateGallery() {
         id="certificates"
         badge="Credentials"
         title="Certificates & Honors"
-        description="Verified academic scholarships, competitive hackathon awards, and cloud architecture credentials."
+        description="Verified academic scholarships, hackathon achievements, and technical certifications."
       >
         {CERTIFICATES.map((cert: CertificateItem, index: number) => (
           <article
@@ -40,68 +37,40 @@ export default function CertificateGallery() {
             tabIndex={0}
             role="button"
             aria-label={`View certificate: ${cert.title}`}
-            className="carousel-card relative w-[300px] sm:w-[340px] md:w-[360px] h-[450px] shrink-0 snap-start rounded-[28px] overflow-hidden group cursor-pointer border border-neutral-200/80 shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 select-none"
+            className="carousel-card flex flex-col w-[340px] sm:w-[420px] md:w-[480px] lg:w-[500px] shrink-0 snap-start rounded-[24px] sm:rounded-[28px] overflow-hidden group cursor-pointer bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-md hover:shadow-2xl hover:border-blue-400/40 dark:hover:border-blue-500/40 transition-all duration-300 select-none p-4 sm:p-5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            {/* Certificate Preview Image */}
-            <div className="absolute inset-0 bg-neutral-900 overflow-hidden">
-              <Image
-                src={cert.image}
-                alt={cert.title}
-                fill
-                sizes="(max-width: 640px) 300px, 360px"
-                className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
-              />
-            </div>
-
-            {/* Subtle Top Gradient for Contrast */}
-            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
-
-            {/* Top Row: Type tag + Top-Right Glass Arrow Button */}
-            <div className="absolute top-6 inset-x-6 flex items-center justify-between z-10 pointer-events-none">
-              <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-black/40 backdrop-blur-md text-white border border-white/15 capitalize">
-                {cert.type}
-              </span>
-
-              <span className="w-10 h-10 rounded-full bg-white/25 group-hover:bg-white text-white group-hover:text-neutral-950 backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-300 shadow-md transform group-hover:scale-110">
-                <ArrowUpRight size={18} strokeWidth={2.2} />
-              </span>
-            </div>
-
-            {/* Bottom Frosted Gradient Overlay matching reference */}
-            <div className="absolute inset-x-0 bottom-0 pt-24 pb-8 px-8 sm:pb-9 sm:px-9 z-10 bg-gradient-to-t from-black/95 via-black/70 to-transparent flex flex-col justify-end">
-              {/* 5 Golden Stars matching reference design */}
-              <div className="flex items-center gap-1 mb-2">
-                {[...Array(5)].map((_, idx) => (
-                  <Star
-                    key={idx}
-                    size={14}
-                    className="text-amber-400 fill-amber-400"
-                  />
-                ))}
+            {/* Elegant Certificate Frame with Generous Spacing between Certificate and Frame */}
+            <div className="relative w-full aspect-[16/11] rounded-[18px] sm:rounded-[20px] overflow-hidden bg-neutral-100/90 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/80 shadow-[inset_0_1px_4px_rgba(0,0,0,0.06)] flex items-center justify-center p-4 sm:p-5 md:p-6">
+              {/* Inner Certificate Mount with Soft Drop Shadow */}
+              <div className="relative w-full h-full rounded-[8px] overflow-hidden shadow-xs flex items-center justify-center">
+                <Image
+                  src={cert.image}
+                  alt={cert.title}
+                  fill
+                  sizes="(max-width: 640px) 340px, (max-width: 1024px) 440px, 500px"
+                  className="object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                />
               </div>
 
-              {/* Title */}
-              <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug group-hover:text-blue-200 transition-colors">
+              {/* Subtle Expand Indicator on Hover */}
+              <div className="absolute top-3.5 right-3.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <span className="w-8 h-8 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/20 flex items-center justify-center shadow-md">
+                  <ArrowUpRight size={15} strokeWidth={2.2} />
+                </span>
+              </div>
+            </div>
+
+            {/* Centered Certificate Title with Generous 4-Sided Spacing from Frame and Boundaries */}
+            <div className="pt-5 sm:pt-6 pb-3 sm:pb-4 px-4 sm:px-6 flex flex-col items-center justify-center text-center">
+              <h3 className="text-sm sm:text-base md:text-[1.05rem] font-bold text-neutral-900 dark:text-white tracking-tight leading-relaxed group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-center w-full line-clamp-2">
                 {cert.title}
               </h3>
-
-              {/* Issuer & Year */}
-              <p className="text-xs sm:text-sm text-neutral-300 mt-1 leading-relaxed">
-                {cert.issuer} · {cert.year}
-              </p>
-
-              {/* Short Detail snippet */}
-              {cert.detail && (
-                <p className="text-xs text-neutral-400 mt-2 line-clamp-2 leading-relaxed pt-2 border-t border-white/10">
-                  {cert.detail}
-                </p>
-              )}
             </div>
           </article>
         ))}
       </CarouselSection>
 
-      {/* Lightbox for Certificates */}
+      {/* Lightbox for viewing certificate */}
       <Lightbox
         items={lightboxItems}
         currentIndex={selectedIndex}

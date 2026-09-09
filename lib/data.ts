@@ -20,6 +20,8 @@ export const SOCIAL = {
   github: "https://github.com/Shambhavi-goel",
   linkedin: "https://www.linkedin.com/in/shambhavi-goel-29110b388/",
   email: "shambhavigoel2@gmail.com",
+  phone: "+91 9389588755",
+  phoneHref: "+919389588755",
 };
 
 export const NAV_LINKS = [

@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, Send, CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, Send, CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import Container from "@/components/ui/Container";
 import { SOCIAL } from "@/lib/data";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -16,10 +15,18 @@ const contactLinks = [
   {
     icon: Mail,
     label: "Email",
-    value: "shambhavi.goel.work@gmail.com",
+    value: SOCIAL.email,
     href: `mailto:${SOCIAL.email}`,
     border: "border-blue-100/80 hover:border-blue-300",
     iconBg: "bg-blue-50 text-blue-600",
+  },
+  {
+    icon: Phone,
+    label: "Phone / WhatsApp",
+    value: SOCIAL.phone,
+    href: `tel:${SOCIAL.phoneHref}`,
+    border: "border-emerald-100/80 hover:border-emerald-300",
+    iconBg: "bg-emerald-50 text-emerald-600",
   },
   {
     icon: LinkedinIcon,
@@ -42,6 +49,7 @@ const contactLinks = [
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const [errors, setErrors] = useState<Partial<typeof form>>({});
 
   const validate = () => {
@@ -57,30 +65,43 @@ export default function Contact() {
     e.preventDefault();
     if (!validate()) return;
     setStatus("loading");
+    setErrorMessage("");
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          subject: `New Portfolio Message from ${form.name}`,
+        }),
       });
-      if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
         setStatus("success");
         setForm({ name: "", email: "", message: "" });
       } else {
         setStatus("error");
+        setErrorMessage(data.message || "Failed to send message. Please try emailing directly.");
       }
     } catch {
       setStatus("error");
+      setErrorMessage("Something went wrong. Please try again or email directly.");
     }
   };
 
   const inputCls =
-    "w-full bg-neutral-50/80 border border-neutral-200 rounded-2xl px-5 py-4 text-sm sm:text-base text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:bg-white focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200";
+    "w-full bg-white border border-neutral-200/90 rounded-2xl px-5 py-3.5 sm:py-4 text-sm sm:text-base text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-all duration-200 shadow-2xs";
 
   return (
     <section id="contact" className="w-full bg-white py-20 md:py-28 flex justify-center overflow-hidden">
       <Container>
-        {/* Same centered max-w-6xl container as Skills, Academics, and About */}
+        {/* Centered max-w-6xl container */}
         <div className="w-full max-w-6xl mx-auto flex flex-col gap-14 sm:gap-16">
 
           {/* ── Header Row ── */}
@@ -101,22 +122,23 @@ export default function Contact() {
             </SectionWrapper>
           </div>
 
-          {/* ── 2-Column Content Layout with Proper Tile Spacing ── */}
+          {/* ── 2-Column Content Layout ── */}
           <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
             {/* Left: Direct Channel Tiles */}
-            <SectionWrapper delay={0.1} className="lg:col-span-5 flex flex-col gap-5">
-              <div>
-                <h3 className="text-lg font-bold text-neutral-950 mb-1.5">Direct Channels</h3>
-                <p className="text-xs sm:text-sm text-neutral-500">Reach out directly via email or professional platforms.</p>
-              </div>
+            <SectionWrapper delay={0.1} className="lg:col-span-5 flex flex-col gap-6">
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+                  <h3 className="text-lg font-bold text-neutral-950">Direct Channels</h3>
+                  <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">Reach out directly via email or professional platforms.</p>
+                </div>
 
-              <div className="flex flex-col gap-4">
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {contactLinks.map(({ icon: Icon, label, value, href, border, iconBg }) => (
                   <a
                     key={label}
                     href={href}
-                    target={href.startsWith("mailto") ? undefined : "_blank"}
+                    target={href.startsWith("mailto") || href.startsWith("tel") ? undefined : "_blank"}
                     rel="noopener noreferrer"
                     className={`portfolio-card flex items-center justify-between bg-white border rounded-3xl transition-all duration-300 group shadow-xs hover:shadow-md ${border}`}
                     style={{ padding: "clamp(1.5rem, 2.5vw, 2.25rem)" }}
@@ -125,7 +147,7 @@ export default function Contact() {
                       <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${iconBg}`}>
                         <Icon width={22} height={22} />
                       </div>
-                      <div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
                         <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">{label}</p>
                         <p className="text-sm sm:text-base font-semibold text-neutral-900 group-hover:text-blue-600 transition-colors">{value}</p>
                       </div>
@@ -139,64 +161,82 @@ export default function Contact() {
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Typically responds within 24 hours</span>
               </div>
-            </SectionWrapper>
+            </div>
+          </SectionWrapper>
 
-            {/* Right: Message Form Tile */}
+            {/* Right: Message Form Tile matching Image 2 */}
             <SectionWrapper delay={0.2} className="lg:col-span-7">
               <form
                 onSubmit={handleSubmit}
                 noValidate
-                className="portfolio-card space-y-7 w-full bg-white border border-blue-100/80 hover:border-blue-200 rounded-3xl shadow-xs hover:shadow-md transition-all duration-300"
-                style={{ padding: "clamp(2rem, 4vw, 3.5rem)" }}
+                className="portfolio-card w-full bg-white border border-neutral-200/80 rounded-3xl shadow-xs hover:shadow-md transition-all duration-300"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1.6rem",
+                  padding: "clamp(2rem, 4vw, 3.5rem)",
+                }}
               >
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-neutral-950">Send a Message</h3>
-                  <p className="text-xs sm:text-sm text-neutral-500 mt-1">Leave a message and I&apos;ll get back to you shortly.</p>
+                {/* Title & Subtitle */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <h3 className="text-2xl sm:text-[1.65rem] font-bold text-neutral-950 tracking-tight">
+                    Send a Message
+                  </h3>
+                  <p className="text-sm text-neutral-500 leading-relaxed">
+                    Leave a message and I&apos;ll get back to you shortly.
+                  </p>
                 </div>
 
-                <div>
-                  <label htmlFor="contact-name" className="block text-xs font-semibold text-neutral-700 mb-2 uppercase tracking-wider">
+                {/* Name Field */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem" }}>
+                  <label htmlFor="contact-name" className="text-xs font-semibold text-neutral-800 uppercase tracking-wider">
                     Your Name
                   </label>
                   <input
                     id="contact-name"
+                    name="name"
                     type="text"
                     placeholder="Jane Doe"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className={inputCls}
                   />
-                  {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
+                  {errors.name && <p className="text-xs text-red-500 pt-0.5">{errors.name}</p>}
                 </div>
 
-                <div>
-                  <label htmlFor="contact-email" className="block text-xs font-semibold text-neutral-700 mb-2 uppercase tracking-wider">
+                {/* Email Field */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem" }}>
+                  <label htmlFor="contact-email" className="text-xs font-semibold text-neutral-800 uppercase tracking-wider">
                     Email Address
                   </label>
                   <input
                     id="contact-email"
+                    name="email"
                     type="email"
                     placeholder="jane@example.com"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className={inputCls}
                   />
-                  {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
+                  {errors.email && <p className="text-xs text-red-500 pt-0.5">{errors.email}</p>}
                 </div>
 
-                <div>
-                  <label htmlFor="contact-msg" className="block text-xs font-semibold text-neutral-700 mb-2 uppercase tracking-wider">
+                {/* Message Field */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem" }}>
+                  <label htmlFor="contact-msg" className="text-xs font-semibold text-neutral-800 uppercase tracking-wider">
                     Message
                   </label>
                   <textarea
                     id="contact-msg"
+                    name="message"
                     rows={5}
                     placeholder="Hi Shambhavi, I'd love to connect regarding an internship/project..."
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     className={`${inputCls} resize-none`}
+                    style={{ minHeight: "150px" }}
                   />
-                  {errors.message && <p className="text-xs text-red-500 mt-1">{errors.message}</p>}
+                  {errors.message && <p className="text-xs text-red-500 pt-0.5">{errors.message}</p>}
                 </div>
 
                 {/* Status alerts */}
@@ -209,24 +249,27 @@ export default function Contact() {
                 {status === "error" && (
                   <div className="flex items-center gap-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
                     <AlertCircle size={18} className="shrink-0" />
-                    <span>Failed to send message. Please try emailing directly.</span>
+                    <span>{errorMessage || "Failed to send message. Please try emailing directly."}</span>
                   </div>
                 )}
 
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="btn-primary w-full py-3.5 sm:py-4 flex items-center justify-center gap-2 text-sm font-semibold rounded-xl cursor-pointer hover:shadow-lg transition-all"
-                >
-                  {status === "loading" ? (
-                    <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <>
-                      <Send size={15} />
-                      <span>Send Message</span>
-                    </>
-                  )}
-                </button>
+                {/* Send Message Pill Button */}
+                <div style={{ paddingTop: "0.75rem" }}>
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="w-full py-4.5 sm:py-5 px-8 min-h-[56px] sm:min-h-[60px] flex items-center justify-center gap-3 text-base sm:text-lg font-bold rounded-full bg-neutral-950 hover:bg-neutral-850 text-white cursor-pointer hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all duration-200"
+                  >
+                    {status === "loading" ? (
+                      <span className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      <>
+                        <Send size={19} />
+                        <span>Send Message</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </form>
             </SectionWrapper>
 

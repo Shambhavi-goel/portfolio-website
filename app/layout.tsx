@@ -39,6 +39,13 @@ export const metadata: Metadata = {
     description: "Building impactful products with AI, Flutter, and full-stack tech.",
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({

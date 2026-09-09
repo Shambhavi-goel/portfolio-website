@@ -109,9 +109,9 @@ export default function Skills() {
               <div className="flex flex-wrap gap-2.5">
                 {[
                   "Python", "Flutter", "React", "Next.js", "Node.js", "TypeScript",
-                  "MySQL", "PostgreSQL", "MongoDB", "Git", "Solidity",
-                  "OpenCV", "scikit-learn", "Socket.io", "AWS", "Tailwind CSS",
-                  "REST APIs", "C++", "C", "Docker Basics",
+                  "MySQL", "PostgreSQL", "MongoDB", "Git",
+                  "OpenCV", "scikit-learn", "AWS", "Tailwind CSS",
+                  "REST APIs", "C++", "C",
                 ].map((s, i) => (
                   <motion.span
                     key={s}

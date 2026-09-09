@@ -68,7 +68,7 @@ export default function CertificateGallery() {
             </div>
 
             {/* Bottom Frosted Gradient Overlay matching reference */}
-            <div className="absolute inset-x-0 bottom-0 pt-20 pb-7 px-7 z-10 bg-gradient-to-t from-black/95 via-black/70 to-transparent flex flex-col justify-end">
+            <div className="absolute inset-x-0 bottom-0 pt-24 pb-8 px-8 sm:pb-9 sm:px-9 z-10 bg-gradient-to-t from-black/95 via-black/70 to-transparent flex flex-col justify-end">
               {/* 5 Golden Stars matching reference design */}
               <div className="flex items-center gap-1 mb-2">
                 {[...Array(5)].map((_, idx) => (

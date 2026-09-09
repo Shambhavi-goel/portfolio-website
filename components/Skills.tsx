@@ -60,25 +60,26 @@ export default function Skills() {
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.45, delay: gi * 0.06, type: "tween" }}
                     whileHover={{ y: -2 }}
-                    className={`portfolio-card p-8 sm:p-9 lg:p-10 bg-white border transition-all duration-300 flex flex-col w-full ${color.border}`}
+                    className={`portfolio-card bg-white border transition-all duration-300 flex flex-col w-full rounded-3xl shadow-xs hover:shadow-md ${color.border}`}
+                    style={{ padding: "clamp(2rem, 3.5vw, 2.75rem)" }}
                   >
                     {/* Icon + Category name */}
                     <div className="flex items-center gap-3.5 mb-7">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${color.icon}`}>
-                        <Icon size={18} />
+                      <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${color.icon}`}>
+                        <Icon size={20} />
                       </div>
-                      <h3 className="font-bold text-base text-neutral-950">{group.category}</h3>
+                      <h3 className="font-bold text-base sm:text-lg text-neutral-950">{group.category}</h3>
                     </div>
 
                     {/* Skills list with progress bars */}
                     <div className="space-y-5">
                       {group.skills.map((skill, si) => (
                         <div key={skill.name}>
-                          <div className="flex justify-between items-center mb-2 text-xs font-medium">
+                          <div className="flex justify-between items-center mb-2 text-xs sm:text-[13px] font-medium">
                             <span className="text-neutral-700">{skill.name}</span>
                             <span className="text-neutral-400 font-mono">{skill.level}%</span>
                           </div>
-                          <div className="h-[5px] bg-neutral-100 rounded-full overflow-hidden">
+                          <div className="h-[6px] bg-neutral-100 rounded-full overflow-hidden">
                             <motion.div
                               className={`h-full rounded-full ${color.bar}`}
                               initial={{ width: 0 }}
@@ -96,13 +97,16 @@ export default function Skills() {
             </div>
           </SectionWrapper>
 
-          {/* ── Tech tag cloud ── */}
+          {/* ── Tech tag cloud in a dedicated padded card ── */}
           <SectionWrapper delay={0.25}>
-            <div className="w-full">
-              <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-5">
-                Tools &amp; Frameworks
+            <div
+              className="portfolio-card bg-white border border-neutral-200/80 rounded-3xl shadow-xs w-full"
+              style={{ padding: "clamp(1.75rem, 3vw, 2.5rem)" }}
+            >
+              <p className="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-5">
+                Tools, Libraries &amp; Frameworks
               </p>
-              <div className="flex flex-wrap gap-2.5 max-w-4xl">
+              <div className="flex flex-wrap gap-2.5">
                 {[
                   "Python", "Flutter", "React", "Next.js", "Node.js", "TypeScript",
                   "MySQL", "PostgreSQL", "MongoDB", "Git", "Solidity",
@@ -116,7 +120,7 @@ export default function Skills() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.02, type: "tween" }}
                     whileHover={{ scale: 1.05, y: -1 }}
-                    className="chip cursor-default"
+                    className="chip cursor-default px-3.5 py-1.5 text-xs sm:text-sm font-medium"
                   >
                     {s}
                   </motion.span>

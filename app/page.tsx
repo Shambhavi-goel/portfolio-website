@@ -5,7 +5,6 @@ import AcademicTimeline from "@/components/AcademicTimeline";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import CertificateGallery from "@/components/CertificateGallery";
-import PhotoGallery from "@/components/PhotoGallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -49,16 +48,10 @@ export default function Home() {
         {/* 6. Certificates & Honors Carousel */}
         <CertificateGallery />
 
-        {/* Generous whitespace between Certificates and Life & Hackathons */}
+        {/* Generous whitespace between Certificates and Contact */}
         <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
 
-        {/* 7. Life & Hackathons Carousel */}
-        <PhotoGallery />
-
-        {/* Generous whitespace between Life & Hackathons and Contact */}
-        <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
-
-        {/* 8. Contact Section */}
+        {/* 7. Contact Section */}
         <Contact />
       </main>
 

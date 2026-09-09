@@ -150,7 +150,10 @@ export default function Hero() {
             <FadeUp delay={0.48}>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4 w-full max-w-2xl pt-2">
                 {/* Tile 1: Machine Learning */}
-                <div className="px-4 py-3.5 sm:px-5 sm:py-4 rounded-2xl bg-purple-50/80 border border-purple-200/90 hover:border-purple-400 transition-all duration-200 flex items-center gap-3.5 shadow-xs group hover:-translate-y-1">
+                <div
+                  className="rounded-2xl bg-purple-50/80 border border-purple-200/90 hover:border-purple-400 transition-all duration-200 flex items-center gap-3.5 shadow-xs group hover:-translate-y-1"
+                  style={{ padding: "1.15rem 1.35rem" }}
+                >
                   <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
                     <Brain size={19} />
                   </div>
@@ -160,7 +163,10 @@ export default function Hero() {
                 </div>
 
                 {/* Tile 2: Full-Stack Dev */}
-                <div className="px-4 py-3.5 sm:px-5 sm:py-4 rounded-2xl bg-blue-50/80 border border-blue-200/90 hover:border-blue-400 transition-all duration-200 flex items-center gap-3.5 shadow-xs group hover:-translate-y-1">
+                <div
+                  className="rounded-2xl bg-blue-50/80 border border-blue-200/90 hover:border-blue-400 transition-all duration-200 flex items-center gap-3.5 shadow-xs group hover:-translate-y-1"
+                  style={{ padding: "1.15rem 1.35rem" }}
+                >
                   <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
                     <Code2 size={19} />
                   </div>
@@ -170,7 +176,10 @@ export default function Hero() {
                 </div>
 
                 {/* Tile 3: Cloud & DevOps */}
-                <div className="px-4 py-3.5 sm:px-5 sm:py-4 rounded-2xl bg-emerald-50/80 border border-emerald-200/90 hover:border-emerald-400 transition-all duration-200 flex items-center gap-3.5 shadow-xs group hover:-translate-y-1">
+                <div
+                  className="rounded-2xl bg-emerald-50/80 border border-emerald-200/90 hover:border-emerald-400 transition-all duration-200 flex items-center gap-3.5 shadow-xs group hover:-translate-y-1"
+                  style={{ padding: "1.15rem 1.35rem" }}
+                >
                   <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
                     <Cloud size={19} />
                   </div>
@@ -180,7 +189,10 @@ export default function Hero() {
                 </div>
 
                 {/* Tile 4: Mobile Apps */}
-                <div className="px-4 py-3.5 sm:px-5 sm:py-4 rounded-2xl bg-rose-50/80 border border-rose-200/90 hover:border-rose-400 transition-all duration-200 flex items-center gap-3.5 shadow-xs group hover:-translate-y-1">
+                <div
+                  className="rounded-2xl bg-rose-50/80 border border-rose-200/90 hover:border-rose-400 transition-all duration-200 flex items-center gap-3.5 shadow-xs group hover:-translate-y-1"
+                  style={{ padding: "1.15rem 1.35rem" }}
+                >
                   <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center shrink-0">
                     <Smartphone size={19} />
                   </div>

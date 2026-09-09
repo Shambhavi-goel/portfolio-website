@@ -75,7 +75,7 @@ export default function Contact() {
   };
 
   const inputCls =
-    "w-full bg-neutral-50/80 border border-neutral-200 rounded-xl px-4 py-3.5 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:bg-white focus:border-blue-400 focus:ring-1 focus:ring-blue-200 transition-all duration-200";
+    "w-full bg-neutral-50/80 border border-neutral-200 rounded-2xl px-5 py-4 text-sm sm:text-base text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:bg-white focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200";
 
   return (
     <section id="contact" className="w-full bg-white py-20 md:py-28 flex justify-center overflow-hidden">
@@ -108,9 +108,7 @@ export default function Contact() {
             <SectionWrapper delay={0.1} className="lg:col-span-5 flex flex-col gap-5">
               <div>
                 <h3 className="text-lg font-bold text-neutral-950 mb-1.5">Direct Channels</h3>
-                <p className="text-sm text-neutral-600 leading-relaxed mb-4">
-                  Feel free to reach out directly via email or connect on professional networks.
-                </p>
+                <p className="text-xs sm:text-sm text-neutral-500">Reach out directly via email or professional platforms.</p>
               </div>
 
               <div className="flex flex-col gap-4">
@@ -120,11 +118,12 @@ export default function Contact() {
                     href={href}
                     target={href.startsWith("mailto") ? undefined : "_blank"}
                     rel="noopener noreferrer"
-                    className={`portfolio-card flex items-center justify-between p-7 sm:p-8 lg:p-9 bg-white border rounded-2xl transition-all duration-300 group shadow-xs hover:shadow-md ${border}`}
+                    className={`portfolio-card flex items-center justify-between bg-white border rounded-3xl transition-all duration-300 group shadow-xs hover:shadow-md ${border}`}
+                    style={{ padding: "clamp(1.5rem, 2.5vw, 2.25rem)" }}
                   >
                     <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${iconBg}`}>
-                        <Icon width={20} height={20} />
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${iconBg}`}>
+                        <Icon width={22} height={22} />
                       </div>
                       <div>
                         <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">{label}</p>
@@ -147,7 +146,8 @@ export default function Contact() {
               <form
                 onSubmit={handleSubmit}
                 noValidate
-                className="portfolio-card p-8 sm:p-10 lg:p-12 space-y-7 w-full bg-white border border-blue-100/80 hover:border-blue-200 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300"
+                className="portfolio-card space-y-7 w-full bg-white border border-blue-100/80 hover:border-blue-200 rounded-3xl shadow-xs hover:shadow-md transition-all duration-300"
+                style={{ padding: "clamp(2rem, 4vw, 3.5rem)" }}
               >
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-neutral-950">Send a Message</h3>

@@ -71,14 +71,17 @@ export default function AcademicTimeline() {
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.45, delay: index * 0.1, type: "tween" }}
                     whileHover={{ y: -3 }}
-                    className={`portfolio-card bg-white border flex flex-col transition-all duration-300 overflow-hidden ${theme.cardBorder}`}
+                    className={`portfolio-card bg-white border flex flex-col transition-all duration-300 rounded-3xl overflow-hidden shadow-xs hover:shadow-md ${theme.cardBorder}`}
                   >
                     {/* ── Card Top Section ── */}
-                    <div className="p-8 sm:p-9 lg:p-10 flex flex-col gap-5 flex-1">
+                    <div
+                      className="flex flex-col gap-5 flex-1"
+                      style={{ padding: "clamp(2rem, 3.5vw, 2.75rem)" }}
+                    >
 
                       {/* Row 1: Icon + Status */}
                       <div className="flex items-center justify-between">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${theme.iconBg}`}>
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${theme.iconBg}`}>
                           <GraduationCap size={22} className={isCurrent ? "animate-pulse" : ""} />
                         </div>
                         <span className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-semibold border ${theme.badgeBg}`}>
@@ -110,7 +113,10 @@ export default function AcademicTimeline() {
                     </div>
 
                     {/* ── Card Bottom Section: Grade ── */}
-                    <div className="px-8 sm:px-9 lg:px-10 py-5 sm:py-6 border-t border-neutral-100 bg-neutral-50/50">
+                    <div
+                      className="border-t border-neutral-100 bg-neutral-50/50"
+                      style={{ padding: "1.25rem clamp(2rem, 3.5vw, 2.75rem)" }}
+                    >
                       <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold border ${theme.gradeBadge}`}>
                         <Award size={14} />
                         <span>{entry.grade}</span>

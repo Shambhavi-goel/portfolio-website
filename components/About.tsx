@@ -101,7 +101,8 @@ export default function About() {
               {/* Stat 1: 6+ Projects Completed */}
               <motion.div
                 whileHover={{ y: -2 }}
-                className="portfolio-card p-6 sm:p-7 lg:p-8 flex items-center gap-4 bg-white border border-emerald-100 hover:border-emerald-300 transition-all duration-200"
+                className="portfolio-card flex items-center gap-4 bg-white border border-emerald-100 hover:border-emerald-300 transition-all duration-200 rounded-3xl"
+                style={{ padding: "clamp(1.5rem, 2vw, 2rem)" }}
               >
                 <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
                   <FileText size={22} />
@@ -110,7 +111,7 @@ export default function About() {
                   <p className="text-2xl sm:text-3xl font-extrabold text-neutral-950 tracking-tight leading-none">
                     6+
                   </p>
-                  <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-medium leading-tight">
+                  <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 font-medium leading-tight">
                     Projects Completed
                   </p>
                 </div>
@@ -119,7 +120,8 @@ export default function About() {
               {/* Stat 2: 4 Hackathons Competed */}
               <motion.div
                 whileHover={{ y: -2 }}
-                className="portfolio-card p-6 sm:p-7 lg:p-8 flex items-center gap-4 bg-white border border-purple-100 hover:border-purple-300 transition-all duration-200"
+                className="portfolio-card flex items-center gap-4 bg-white border border-purple-100 hover:border-purple-300 transition-all duration-200 rounded-3xl"
+                style={{ padding: "clamp(1.5rem, 2vw, 2rem)" }}
               >
                 <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
                   <Trophy size={22} />
@@ -128,7 +130,7 @@ export default function About() {
                   <p className="text-2xl sm:text-3xl font-extrabold text-neutral-950 tracking-tight leading-none">
                     4
                   </p>
-                  <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-medium leading-tight">
+                  <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 font-medium leading-tight">
                     Hackathons Completed
                   </p>
                 </div>
@@ -137,7 +139,8 @@ export default function About() {
               {/* Stat 3: 3 AWS Cloud Badges */}
               <motion.div
                 whileHover={{ y: -2 }}
-                className="portfolio-card p-6 sm:p-7 lg:p-8 flex items-center gap-4 bg-white border border-blue-100 hover:border-blue-300 transition-all duration-200"
+                className="portfolio-card flex items-center gap-4 bg-white border border-blue-100 hover:border-blue-300 transition-all duration-200 rounded-3xl"
+                style={{ padding: "clamp(1.5rem, 2vw, 2rem)" }}
               >
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
                   <Cloud size={22} />
@@ -146,7 +149,7 @@ export default function About() {
                   <p className="text-2xl sm:text-3xl font-extrabold text-neutral-950 tracking-tight leading-none">
                     3
                   </p>
-                  <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-medium leading-tight">
+                  <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 font-medium leading-tight">
                     AWS Cloud Badges
                   </p>
                 </div>
@@ -155,7 +158,8 @@ export default function About() {
               {/* Stat 4: 100% End-to-End Ownership */}
               <motion.div
                 whileHover={{ y: -2 }}
-                className="portfolio-card p-6 sm:p-7 lg:p-8 flex items-center gap-4 bg-white border border-orange-100 hover:border-orange-300 transition-all duration-200"
+                className="portfolio-card flex items-center gap-4 bg-white border border-orange-100 hover:border-orange-300 transition-all duration-200 rounded-3xl"
+                style={{ padding: "clamp(1.5rem, 2vw, 2rem)" }}
               >
                 <div className="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0">
                   <Users size={22} />
@@ -164,7 +168,7 @@ export default function About() {
                   <p className="text-2xl sm:text-3xl font-extrabold text-neutral-950 tracking-tight leading-none">
                     100%
                   </p>
-                  <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-medium leading-tight">
+                  <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 font-medium leading-tight">
                     End-to-End Ownership
                   </p>
                 </div>
@@ -199,10 +203,13 @@ export default function About() {
               </div>
 
               {/* 3 Pillars in 1 Horizontal Container with Dividers */}
-              <div className="portfolio-card p-8 sm:p-10 lg:p-12 bg-white border border-neutral-200/80 shadow-xs">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
+              <div
+                className="portfolio-card bg-white border border-neutral-200/80 shadow-xs rounded-3xl"
+                style={{ padding: "clamp(1.75rem, 3vw, 2.75rem)" }}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
                   {/* Pillar 1: Machine Learning */}
-                  <div className="flex items-center gap-4 pt-3 md:pt-0">
+                  <div className="flex items-center gap-4 p-3 md:p-5">
                     <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
                       <Laptop size={22} />
                     </div>
@@ -215,7 +222,7 @@ export default function About() {
                   </div>
 
                   {/* Pillar 2: Full-Stack Web */}
-                  <div className="flex items-center gap-4 pt-5 md:pt-0 md:pl-8">
+                  <div className="flex items-center gap-4 p-3 md:p-5 md:pl-8">
                     <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
                       <Code2 size={22} />
                     </div>
@@ -228,7 +235,7 @@ export default function About() {
                   </div>
 
                   {/* Pillar 3: Mobile Systems */}
-                  <div className="flex items-center gap-4 pt-5 md:pt-0 md:pl-8">
+                  <div className="flex items-center gap-4 p-3 md:p-5 md:pl-8">
                     <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
                       <Smartphone size={22} />
                     </div>

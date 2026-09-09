@@ -48,7 +48,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-[90vh] flex justify-center items-center bg-gradient-to-b from-[#FBFBFF] via-white to-white overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-10 md:pb-14"
+      className="relative w-full min-h-[85vh] flex justify-center bg-gradient-to-b from-[#FBFBFF] via-white to-white overflow-hidden pt-28 sm:pt-32 md:pt-36 pb-12 md:pb-16"
     >
 
       <Container className="relative z-10 w-full flex justify-center">

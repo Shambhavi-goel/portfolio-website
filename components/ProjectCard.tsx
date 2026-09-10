@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { type Project } from "@/data/projects";
 
 interface ProjectCardProps {
@@ -44,15 +44,9 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
 
         {/* Top Badges */}
         <div className="absolute top-5 left-5 z-10 pointer-events-none flex items-center gap-2">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-neutral-950/75 backdrop-blur-md text-white border border-white/15 shadow-xs">
+          <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] font-bold bg-neutral-950/75 backdrop-blur-md text-white border border-white/15 shadow-xs">
             {project.tags[0]}
           </span>
-          {project.featured && (
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-400 text-neutral-950 shadow-xs">
-              <Sparkles size={11} className="text-neutral-950" />
-              Featured
-            </span>
-          )}
         </div>
       </div>
 
@@ -72,7 +66,7 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
             {project.techStack.slice(0, 3).map((tech) => (
               <span
                 key={tech}
-                className="text-[11px] font-semibold text-neutral-700 bg-neutral-100 border border-neutral-200/80 px-2 py-0.5 rounded-md"
+                className="text-[11px] font-semibold text-neutral-700 bg-neutral-100 border border-neutral-200/80 px-2.5 py-1 rounded-md"
               >
                 {tech}
               </span>

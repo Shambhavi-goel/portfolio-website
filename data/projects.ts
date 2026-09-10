@@ -22,23 +22,6 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: "foodloop",
-    slug: "foodloop",
-    title: "FoodLoop",
-    tagline: "Bridging surplus food donors and shelters to eliminate urban food waste in real time.",
-    description:
-      "Cross-platform mobile app connecting surplus-food donors with recipients to reduce food wastage.",
-    longDescription:
-      "Real-time listing and coordination platform that bridges the gap between food donors (restaurants, households, events) and recipients (NGOs, shelters). Reduces urban food waste through live notifications, smart geolocation matching, and status-tracked pickups.",
-    tags: ["Mobile"],
-    techStack: ["Flutter", "Dart", "Node.js", "Express", "REST APIs"],
-    github: "https://github.com/anandtejaswi/FoodLoop",
-    featured: true,
-    image: "/projects/foodloop.png",
-    // TODO: add specific role per project
-    role: "Led mobile frontend development using Flutter; designed real-time listing workflows and integrated backend REST endpoints.",
-  },
-  {
     id: "narirakshak",
     slug: "narirakshak",
     title: "NariRakshak",
@@ -60,10 +43,41 @@ export const PROJECTS: Project[] = [
       "Leaflet.js",
     ],
     github: "https://github.com/pranjalg544/naarirakshak",
-    featured: true,
     image: "/projects/narirakshak.png",
     // TODO: add specific role per project
     role: "Architected cross-platform client in Flutter and built WebSocket-driven real-time tracking pipelines with PostGIS route querying.",
+  },
+  {
+    id: "foodloop",
+    slug: "foodloop",
+    title: "FoodLoop",
+    tagline: "Bridging surplus food donors and shelters to eliminate urban food waste in real time.",
+    description:
+      "Cross-platform mobile app connecting surplus-food donors with recipients to reduce food wastage.",
+    longDescription:
+      "Real-time listing and coordination platform that bridges the gap between food donors (restaurants, households, events) and recipients (NGOs, shelters). Reduces urban food waste through live notifications, smart geolocation matching, and status-tracked pickups.",
+    tags: ["Mobile"],
+    techStack: ["Flutter", "Dart", "Node.js", "Express", "REST APIs"],
+    github: "https://github.com/anandtejaswi/FoodLoop",
+    image: "/projects/foodloop.png",
+    // TODO: add specific role per project
+    role: "Led mobile frontend development using Flutter; designed real-time listing workflows and integrated backend REST endpoints.",
+  },
+  {
+    id: "face-recognition",
+    slug: "face-recognition",
+    title: "Face Recognition System",
+    tagline: "High-accuracy facial recognition pipeline supporting 100+ identities via InsightFace & ArcFace embeddings.",
+    description:
+      "Facial recognition pipeline supporting 100+ identities using InsightFace + ArcFace embeddings.",
+    longDescription:
+      "Production-grade computer vision pipeline featuring InsightFace multi-task cascaded detection, ArcFace deep embedding extraction, and cosine-similarity vector matching optimised for real-time video stream inference using OpenCV and scikit-learn.",
+    tags: ["AI/ML"],
+    techStack: ["Python", "InsightFace", "ArcFace", "OpenCV", "scikit-learn", "NumPy"],
+    github: "https://github.com/Shambhavi-goel/face-recognition-system",
+    image: "/projects/face-recognition.png",
+    // TODO: add specific role per project
+    role: "Designed and implemented end-to-end model evaluation, embedding extraction pipeline, and cosine similarity matching threshold optimization.",
   },
   {
     id: "saqms",
@@ -82,23 +96,6 @@ export const PROJECTS: Project[] = [
     role: "Developed patient and administrative dashboard components and assisted in real-time queue synchronization logic.",
   },
   {
-    id: "face-recognition",
-    slug: "face-recognition",
-    title: "Face Recognition System",
-    tagline: "High-accuracy facial recognition pipeline supporting 100+ identities via InsightFace & ArcFace embeddings.",
-    description:
-      "Facial recognition pipeline supporting 100+ identities using InsightFace + ArcFace embeddings.",
-    longDescription:
-      "Production-grade computer vision pipeline featuring InsightFace multi-task cascaded detection, ArcFace deep embedding extraction, and cosine-similarity vector matching optimised for real-time video stream inference using OpenCV and scikit-learn.",
-    tags: ["AI/ML"],
-    techStack: ["Python", "InsightFace", "ArcFace", "OpenCV", "scikit-learn", "NumPy"],
-    github: "https://github.com/Shambhavi-goel/face-recognition-system",
-    featured: true,
-    image: "/projects/face-recognition.png",
-    // TODO: add specific role per project
-    role: "Designed and implemented end-to-end model evaluation, embedding extraction pipeline, and cosine similarity matching threshold optimization.",
-  },
-  {
     id: "clean-street",
     slug: "clean-street",
     title: "Clean Street",
@@ -110,10 +107,9 @@ export const PROJECTS: Project[] = [
     tags: ["Web"],
     techStack: ["React", "Node.js", "Express", "MongoDB", "Leaflet", "Recharts", "JWT"],
     github: "https://github.com/Aman162004/clean-street",
-    featured: true,
     image: "/projects/clean-street.png",
     // TODO: add specific role per project
-    role: "Built interactive mapping components, citizen reporting workflows, and real-time status update feeds.",
+    role: "Architected and crafted the frontend user experience using React; engineered the responsive citizen reporting portal.",
   },
   {
     id: "kissan-sathi",
@@ -129,6 +125,6 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/Aman162004/Blockchain-App-For-Farmers",
     image: "/projects/kissan-sathi.png",
     // TODO: add specific role per project
-    role: "Implemented frontend integration with Web3 provider, smart contract payment verification flows, and crop catalog interface.",
+    role: "Designed and developed the frontend web application; built an intuitive, farmer-friendly marketplace interface featuring dynamic crop catalogs, responsive listing forms, and transparent order tracking.",
   },
 ];

@@ -64,7 +64,10 @@ export default function Skills() {
                     style={{ padding: "clamp(2rem, 3.5vw, 2.75rem)" }}
                   >
                     {/* Icon + Category name */}
-                    <div className="flex items-center gap-3.5 mb-7">
+                    <div
+                      className="flex items-center gap-3.5"
+                      style={{ marginBottom: "1rem" }}
+                    >
                       <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${color.icon}`}>
                         <Icon size={20} />
                       </div>

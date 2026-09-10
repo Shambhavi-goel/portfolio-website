@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, ArrowUpRight, UserCheck, Layers, FileText, Star } from "lucide-react";
+import { X, ExternalLink, ArrowUpRight, UserCheck, Layers, FileText } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
 import { type Project } from "@/data/projects";
 
@@ -82,7 +82,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       <span
                         key={tag}
                         style={{
-                          padding: "0.35rem 0.85rem",
+                          padding: "0.45rem 1.15rem",
                           borderRadius: "9999px",
                           fontSize: "0.75rem",
                           fontWeight: "700",
@@ -94,25 +94,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         {tag}
                       </span>
                     ))}
-                    {project.featured && (
-                      <span
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "0.35rem",
-                          padding: "0.35rem 0.85rem",
-                          borderRadius: "9999px",
-                          fontSize: "0.75rem",
-                          fontWeight: "700",
-                          backgroundColor: "#fef3c7",
-                          color: "#92400e",
-                          border: "1px solid #fde68a",
-                        }}
-                      >
-                        <Star size={12} className="fill-amber-500 text-amber-500" />
-                        Featured Project
-                      </span>
-                    )}
                   </div>
 
                   <h2

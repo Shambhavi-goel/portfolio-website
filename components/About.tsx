@@ -189,7 +189,7 @@ export default function About() {
                     Core Engineering Pillars
                   </h3>
                 </div>
-                <a
+                {/* <a
                   href="#academics"
                   onClick={(e) => {
                     e.preventDefault();
@@ -199,7 +199,7 @@ export default function About() {
                 >
                   <span>Explore Academic Timeline</span>
                   <ArrowRight size={13} />
-                </a>
+                </a> */}
               </div>
 
               {/* 3 Pillars in 1 Horizontal Container with Dividers */}

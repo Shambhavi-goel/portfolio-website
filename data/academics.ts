@@ -21,7 +21,7 @@ export const ACADEMIC_HISTORY: AcademicEntry[] = [
     degree: "B.Tech in Computer Science (Artificial Intelligence & Machine Learning)",
     institution: "Faculty of Technology, University of Delhi",
     duration: "Aug 2024 – Present",
-    grade: "CGPA 9.45 / 10",
+    grade: "CGPA: 9.45 / 10",
     location: "Delhi, India",
     status: "current",
     theme: "emerald",

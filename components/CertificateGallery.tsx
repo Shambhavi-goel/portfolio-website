@@ -87,11 +87,11 @@ export default function CertificateGallery() {
 
                 <div className="pt-3 border-t border-neutral-100 flex items-center justify-between gap-2">
                   {cert.issuer ? (
-                    <span className="text-[11px] font-semibold text-neutral-700 bg-neutral-100 border border-neutral-200/80 px-2.5 py-0.5 rounded-md truncate max-w-[220px]">
+                    <span className="text-[11px] font-semibold text-neutral-700 bg-neutral-100 border border-neutral-200/80 px-3.5 py-1.5 rounded-full truncate max-w-[220px]">
                       {cert.issuer}
                     </span>
                   ) : (
-                    <span className="text-[11px] font-semibold text-neutral-500 bg-neutral-100 px-2 py-0.5 rounded-md">
+                    <span className="text-[11px] font-semibold text-neutral-500 bg-neutral-100 px-3.5 py-1.5 rounded-full">
                       Verified Credential
                     </span>
                   )}

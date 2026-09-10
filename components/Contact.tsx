@@ -96,7 +96,7 @@ export default function Contact() {
   };
 
   const inputCls =
-    "w-full bg-white border border-neutral-200/90 rounded-2xl px-5 py-3.5 sm:py-4 text-sm sm:text-base text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-all duration-200 shadow-2xs";
+    "w-full bg-white border border-neutral-200/90 rounded-2xl px-6 sm:px-7 py-4 text-sm sm:text-base text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-all duration-200 shadow-2xs leading-normal";
 
   return (
     <section id="contact" className="w-full bg-white py-20 md:py-28 flex justify-center overflow-hidden">
@@ -200,6 +200,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className={inputCls}
+                    style={{ padding: "0.95rem 1.45rem" }}
                   />
                   {errors.name && <p className="text-xs text-red-500 pt-0.5">{errors.name}</p>}
                 </div>
@@ -217,6 +218,7 @@ export default function Contact() {
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className={inputCls}
+                    style={{ padding: "0.95rem 1.45rem" }}
                   />
                   {errors.email && <p className="text-xs text-red-500 pt-0.5">{errors.email}</p>}
                 </div>
@@ -234,7 +236,7 @@ export default function Contact() {
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     className={`${inputCls} resize-none`}
-                    style={{ minHeight: "150px" }}
+                    style={{ padding: "1.1rem 1.45rem", minHeight: "150px" }}
                   />
                   {errors.message && <p className="text-xs text-red-500 pt-0.5">{errors.message}</p>}
                 </div>

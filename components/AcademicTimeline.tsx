@@ -84,9 +84,12 @@ export default function AcademicTimeline() {
                         <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${theme.iconBg}`}>
                           <GraduationCap size={22} className={isCurrent ? "animate-pulse" : ""} />
                         </div>
-                        <span className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-semibold border ${theme.badgeBg}`}>
-                          <span className={`w-1.5 h-1.5 rounded-full ${theme.dot}`} />
-                          {isCurrent ? "Current Pursuing" : "Completed"}
+                        <span
+                          className={`inline-flex items-center gap-2 rounded-full text-xs font-semibold border ${theme.badgeBg} leading-normal`}
+                          style={{ padding: "0.45rem 1.15rem" }}
+                        >
+                          <span className={`w-2 h-2 rounded-full shrink-0 ${theme.dot}`} />
+                          <span>{isCurrent ? "Current Pursuing" : "Completed"}</span>
                         </span>
                       </div>
 
@@ -117,8 +120,11 @@ export default function AcademicTimeline() {
                       className="border-t border-neutral-100 bg-neutral-50/50"
                       style={{ padding: "1.25rem clamp(2rem, 3.5vw, 2.75rem)" }}
                     >
-                      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold border ${theme.gradeBadge}`}>
-                        <Award size={14} />
+                      <div
+                        className={`inline-flex items-center gap-2.5 rounded-full text-xs sm:text-sm font-bold border ${theme.gradeBadge} leading-normal`}
+                        style={{ padding: "0.55rem 1.35rem" }}
+                      >
+                        <Award size={15} className="shrink-0" />
                         <span>{entry.grade}</span>
                       </div>
                     </div>

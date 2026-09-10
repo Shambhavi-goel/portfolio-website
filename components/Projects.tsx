@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Star } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import CarouselSection from "@/components/ui/CarouselSection";
 import ProjectModal from "@/components/ProjectModal";
 import { PROJECTS, type Project } from "@/data/projects";
@@ -56,17 +56,11 @@ export default function Projects() {
                 </span>
               </div>
 
-              {/* Top-Left Category & Featured Badges */}
+              {/* Top-Left Category Badge */}
               <div className="absolute top-5 left-5 z-10 pointer-events-none flex items-center gap-2">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-neutral-950/75 backdrop-blur-md text-white border border-white/15 shadow-xs">
+                <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] font-bold bg-neutral-950/75 backdrop-blur-md text-white border border-white/15 shadow-xs">
                   {project.tags[0]}
                 </span>
-                {project.featured && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-400 text-neutral-950 shadow-xs">
-                    <Star size={10} className="fill-neutral-950" />
-                    Featured
-                  </span>
-                )}
               </div>
             </div>
 

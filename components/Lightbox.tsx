@@ -117,7 +117,7 @@ export default function Lightbox({
                       {currentItem.tag && (
                         <span
                           style={{
-                            padding: "0.3rem 0.8rem",
+                            padding: "0.45rem 1.15rem",
                             borderRadius: "9999px",
                             fontSize: "0.75rem",
                             fontWeight: "700",
@@ -133,7 +133,7 @@ export default function Lightbox({
                       {currentItem.year && (
                         <span
                           style={{
-                            padding: "0.3rem 0.8rem",
+                            padding: "0.45rem 1.15rem",
                             borderRadius: "9999px",
                             fontSize: "0.75rem",
                             fontWeight: "600",

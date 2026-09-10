@@ -215,9 +215,12 @@ export default function Hero() {
 
             {/* 7. Status Pill */}
             <FadeUp delay={0.52} className="pt-1">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-200/90 bg-emerald-50 text-xs sm:text-sm font-semibold text-emerald-800 w-fit shadow-2xs">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                Available for internships &amp; collaborations
+              <div
+                className="inline-flex items-center gap-2.5 rounded-full border border-emerald-200/90 bg-emerald-50 text-xs sm:text-sm font-semibold text-emerald-800 w-fit shadow-2xs leading-normal"
+                style={{ padding: "0.55rem 1.35rem" }}
+              >
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                <span>Available for internships &amp; collaborations</span>
               </div>
             </FadeUp>
 

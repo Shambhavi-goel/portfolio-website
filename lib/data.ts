@@ -45,7 +45,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
     category: "Languages",
     icon: "Code2",
     skills: [
-      { name: "Python", level: 90 },
+      { name: "Python", level: 70 },
       { name: "C", level: 75 },
       { name: "C++", level: 78 },
     ],
@@ -55,7 +55,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
     icon: "Globe",
     skills: [
       { name: "HTML / CSS", level: 88 },
-      { name: "JavaScript", level: 82 },
+      { name: "JavaScript", level: 70 },
       { name: "Flutter", level: 80 },
     ],
   },

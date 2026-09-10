@@ -50,7 +50,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-[85vh] flex justify-center bg-gradient-to-b from-[#FBFBFF] via-white to-white overflow-hidden pt-28 sm:pt-32 md:pt-36 pb-12 md:pb-16"
+      className="relative w-full min-h-[85vh] flex justify-center bg-gradient-to-b from-[#FBFBFF] via-white to-white overflow-hidden pb-16 md:pb-24 scroll-mt-28"
+      style={{ paddingTop: "clamp(7.5rem, 15vh, 11rem)" }}
     >
 
       <Container className="relative z-10 w-full flex justify-center">
@@ -58,23 +59,15 @@ export default function Hero() {
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
 
           {/* ── Left Column: Spacious Vertical Flex Structure ── */}
-          <div className="flex flex-col justify-center gap-7 sm:gap-8 order-2 lg:order-1 lg:col-span-7">
+          <div className="flex flex-col justify-start gap-7 sm:gap-8 order-2 lg:order-1 lg:col-span-7 pt-4 sm:pt-8 lg:pt-10">
 
-            {/* 1. Status Pill */}
-            <FadeUp delay={0.08}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-200/90 bg-emerald-50 text-xs sm:text-sm font-semibold text-emerald-800 w-fit shadow-2xs">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                Available for internships &amp; collaborations
-              </div>
-            </FadeUp>
-
-            {/* 2. Headline & Role */}
-            <FadeUp delay={0.16} className="space-y-3">
+            {/* 1. Headline & Role */}
+            <FadeUp delay={0.16} className="space-y-3 pt-3 sm:pt-6">
               <h1 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-extrabold text-neutral-950 tracking-tight leading-[1.1]">
                 Shambhavi Goel
               </h1>
               <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold text-neutral-850 tracking-tight text-neutral-800">
-                AI/ML Engineer
+                AI/ML and Software Engineer
               </h2>
             </FadeUp>
 
@@ -88,27 +81,29 @@ export default function Hero() {
 
             {/* 4. Action Buttons Row */}
             <FadeUp delay={0.32}>
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                 <a
                   href="#projects"
                   onClick={(e) => {
                     e.preventDefault();
                     document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300 text-sm sm:text-base font-semibold hover:border-neutral-400 hover:scale-[1.02] transition-all shadow-xs"
+                  className="inline-flex items-center gap-2 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300 text-xs sm:text-sm font-semibold hover:border-neutral-400 hover:scale-[1.02] transition-all shadow-xs cursor-pointer whitespace-nowrap"
+                  style={{ padding: "0.55rem 1.15rem" }}
                 >
-                  <Eye size={17} />
+                  <Eye size={15} />
                   <span>View Projects</span>
-                  <ArrowRight size={16} />
+                  <ArrowRight size={14} />
                 </a>
 
                 <a
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300 text-sm sm:text-base font-semibold hover:border-neutral-400 hover:scale-[1.02] transition-all shadow-xs"
+                  className="inline-flex items-center gap-2 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300 text-xs sm:text-sm font-semibold hover:border-neutral-400 hover:scale-[1.02] transition-all shadow-xs cursor-pointer whitespace-nowrap"
+                  style={{ padding: "0.55rem 1.15rem" }}
                 >
-                  <Download size={17} />
+                  <Download size={15} />
                   <span>Download Resume</span>
                 </a>
 
@@ -118,9 +113,10 @@ export default function Hero() {
                     e.preventDefault();
                     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300 text-sm sm:text-base font-semibold hover:border-neutral-400 hover:scale-[1.02] transition-all shadow-xs"
+                  className="inline-flex items-center gap-2 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300 text-xs sm:text-sm font-semibold hover:border-neutral-400 hover:scale-[1.02] transition-all shadow-xs cursor-pointer whitespace-nowrap"
+                  style={{ padding: "0.55rem 1.15rem" }}
                 >
-                  <Mail size={17} />
+                  <Mail size={15} />
                   <span>Contact Me</span>
                 </a>
               </div>
@@ -214,6 +210,14 @@ export default function Hero() {
                     Mobile Apps
                   </span>
                 </div>
+              </div>
+            </FadeUp>
+
+            {/* 7. Status Pill */}
+            <FadeUp delay={0.52} className="pt-1">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-200/90 bg-emerald-50 text-xs sm:text-sm font-semibold text-emerald-800 w-fit shadow-2xs">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                Available for internships &amp; collaborations
               </div>
             </FadeUp>
 

@@ -118,7 +118,7 @@ export const PROJECTS: Project[] = [
   {
     id: "kissan-sathi",
     slug: "kissan-sathi",
-    title: "Kissan Sathi",
+    title: "Kisaan Sathi",
     tagline: "Decentralized agricultural marketplace eliminating middlemen via automated Solidity escrow contracts.",
     description:
       "Decentralized agricultural marketplace using smart contracts for direct farmer-to-buyer payments.",

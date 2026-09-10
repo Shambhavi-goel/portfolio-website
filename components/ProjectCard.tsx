@@ -28,58 +28,58 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
       tabIndex={0}
       role="button"
       aria-label={`View details for ${project.title}`}
-      className="group relative h-[360px] sm:h-[400px] w-full rounded-2xl overflow-hidden cursor-pointer border border-neutral-800/40 shadow-card hover:shadow-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2"
+      className="group flex flex-col w-full rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer bg-white border border-neutral-200/90 shadow-md hover:shadow-2xl hover:border-blue-500/40 transition-all duration-300 select-none p-4 sm:p-5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     >
-      {/* ── Full-Bleed Background Screenshot ── */}
-      <Image
-        src={project.image}
-        alt={`${project.title} screenshot`}
-        fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-        className="object-cover object-top transition-transform duration-300 ease-out group-hover:scale-105"
-      />
-
-      {/* ── Dark Gradient Overlay for optimal contrast ── */}
-      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent opacity-85 group-hover:opacity-95 transition-opacity duration-300" />
-
-      {/* ── Subtle Top Badges ── */}
-      <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
-        <div className="flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-black/50 text-white/90 backdrop-blur-md border border-white/10"
-            >
-              {tag}
-            </span>
-          ))}
+      {/* Landscape Image Frame */}
+      <div className="relative w-full aspect-[16/10] rounded-[18px] sm:rounded-[20px] overflow-hidden bg-neutral-100/90 border border-neutral-200/90 shadow-[inset_0_1px_4px_rgba(0,0,0,0.06)] flex items-center justify-center p-3 sm:p-4">
+        <div className="relative w-full h-full rounded-[10px] sm:rounded-[12px] overflow-hidden shadow-xs bg-neutral-900">
+          <Image
+            src={project.image}
+            alt={`${project.title} screenshot`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          />
         </div>
 
-        {project.featured && (
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white text-neutral-950 shadow-sm">
-            <Sparkles size={11} className="text-neutral-950" />
-            Featured
+        {/* Top Badges */}
+        <div className="absolute top-5 left-5 z-10 pointer-events-none flex items-center gap-2">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-neutral-950/75 backdrop-blur-md text-white border border-white/15 shadow-xs">
+            {project.tags[0]}
           </span>
-        )}
+          {project.featured && (
+            <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-400 text-neutral-950 shadow-xs">
+              <Sparkles size={11} className="text-neutral-950" />
+              Featured
+            </span>
+          )}
+        </div>
       </div>
 
-      {/* ── Bottom Overlay Content ── */}
-      <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7 flex flex-col justify-end z-10">
-        <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
-          {project.title}
-        </h3>
+      {/* Content Area */}
+      <div className="pt-4 sm:pt-5 pb-1 px-1 sm:px-2 flex flex-col flex-1 justify-between gap-3">
+        <div>
+          <h3 className="text-base sm:text-lg md:text-[1.15rem] font-bold text-neutral-950 tracking-tight leading-snug group-hover:text-blue-600 transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-xs sm:text-sm text-neutral-600 mt-1.5 line-clamp-2 leading-relaxed font-normal">
+            {project.tagline || project.description}
+          </p>
+        </div>
 
-        <p className="text-xs sm:text-sm text-neutral-300 mt-1.5 line-clamp-2 leading-relaxed">
-          {project.tagline || project.description}
-        </p>
+        <div className="mt-2 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-neutral-500">
+          <div className="flex flex-wrap gap-1.5">
+            {project.techStack.slice(0, 3).map((tech) => (
+              <span
+                key={tech}
+                className="text-[11px] font-semibold text-neutral-700 bg-neutral-100 border border-neutral-200/80 px-2 py-0.5 rounded-md"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
 
-        {/* ── Hover "View Details →" Hint ── */}
-        <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-white/80 group-hover:text-white transition-all duration-300">
-          <span className="text-[11px] text-neutral-400 font-normal">
-            {project.techStack.slice(0, 3).join(" · ")}
-          </span>
-
-          <div className="inline-flex items-center gap-1 text-xs font-semibold text-white group-hover:translate-x-1 transition-transform duration-200">
+          <div className="inline-flex items-center gap-1 text-xs font-semibold text-neutral-500 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all duration-200">
             <span>View Details</span>
             <ArrowRight size={14} />
           </div>

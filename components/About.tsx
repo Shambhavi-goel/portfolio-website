@@ -128,7 +128,7 @@ export default function About() {
                 </div>
                 <div>
                   <p className="text-2xl sm:text-3xl font-extrabold text-neutral-950 tracking-tight leading-none">
-                    4
+                    4+
                   </p>
                   <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 font-medium leading-tight">
                     Hackathons Completed

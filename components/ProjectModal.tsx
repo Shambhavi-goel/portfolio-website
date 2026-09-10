@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, ArrowUpRight, UserCheck, Layers } from "lucide-react";
+import { X, ExternalLink, ArrowUpRight, UserCheck, Layers, FileText, Star } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
 import { type Project } from "@/data/projects";
 
@@ -36,7 +36,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   return (
     <AnimatePresence>
       {project && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -58,47 +58,58 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ type: "spring", stiffness: 350, damping: 28 }}
-            className="relative w-full max-w-3xl max-h-[90vh] bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden flex flex-col z-10"
+            className="relative w-full max-w-3xl max-h-[92vh] bg-white rounded-3xl shadow-2xl border border-neutral-200/90 overflow-hidden flex flex-col z-10"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
               aria-label="Close project details"
-              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-white/80 hover:bg-white text-neutral-600 hover:text-neutral-950 backdrop-blur-md border border-neutral-200 shadow-sm transition-all duration-200 hover:scale-105"
+              className="absolute top-4 right-4 sm:top-5 sm:right-5 z-30 p-2.5 rounded-full bg-white/95 hover:bg-white text-neutral-800 hover:text-black backdrop-blur-md border border-neutral-200/90 shadow-md transition-all duration-200 hover:scale-105 cursor-pointer"
             >
               <X size={18} />
             </button>
 
             {/* Scrollable Content Container */}
-            <div className="overflow-y-auto w-full custom-scrollbar">
-              {/* Banner/Hero Image: Full image visible, not cropped */}
-              <div className="relative w-full bg-neutral-900 aspect-[16/9] border-b border-neutral-200 flex items-center justify-center overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} screenshot`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 800px"
-                  className="object-contain"
-                  priority
-                />
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-              </div>
-
-              {/* Modal Body */}
-              <div className="p-6 sm:p-8 md:p-10 space-y-6">
-                {/* Header info */}
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
+            <div
+              className="overflow-y-auto w-full custom-scrollbar"
+              style={{ padding: "clamp(1.5rem, 3vw, 2.5rem)" }}
+            >
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+                {/* 1. Header info */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", paddingRight: "3rem" }}>
+                  <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem" }}>
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs px-2.5 py-0.5 rounded-full font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200"
+                        style={{
+                          padding: "0.35rem 0.85rem",
+                          borderRadius: "9999px",
+                          fontSize: "0.75rem",
+                          fontWeight: "700",
+                          backgroundColor: "#eff6ff",
+                          color: "#1d4ed8",
+                          border: "1px solid #bfdbfe",
+                        }}
                       >
                         {tag}
                       </span>
                     ))}
                     {project.featured && (
-                      <span className="text-xs px-2.5 py-0.5 rounded-full font-semibold bg-neutral-950 text-white">
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "0.35rem",
+                          padding: "0.35rem 0.85rem",
+                          borderRadius: "9999px",
+                          fontSize: "0.75rem",
+                          fontWeight: "700",
+                          backgroundColor: "#fef3c7",
+                          color: "#92400e",
+                          border: "1px solid #fde68a",
+                        }}
+                      >
+                        <Star size={12} className="fill-amber-500 text-amber-500" />
                         Featured Project
                       </span>
                     )}
@@ -106,51 +117,230 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                   <h2
                     id="project-modal-title"
-                    className="text-2xl sm:text-3xl font-bold text-neutral-950 tracking-tight"
+                    style={{
+                      fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
+                      fontWeight: "800",
+                      color: "#09090b",
+                      lineHeight: "1.15",
+                      letterSpacing: "-0.025em",
+                      margin: 0,
+                    }}
                   >
                     {project.title}
                   </h2>
 
                   {project.tagline && (
-                    <p className="text-sm sm:text-base font-medium text-neutral-500 mt-1">
+                    <p
+                      style={{
+                        fontSize: "clamp(0.875rem, 1.5vw, 1.05rem)",
+                        fontWeight: "500",
+                        color: "#4b5563",
+                        lineHeight: "1.6",
+                        margin: 0,
+                      }}
+                    >
                       {project.tagline}
                     </p>
                   )}
                 </div>
 
-                {/* Description */}
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">
-                    Project Overview
-                  </h3>
-                  <p className="text-neutral-700 leading-relaxed text-sm sm:text-base">
+                {/* 2. Landscape Image Showcase with Frame (Just like certificates section) */}
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "16 / 9",
+                    borderRadius: "1.25rem",
+                    overflow: "hidden",
+                    backgroundColor: "#f1f5f9",
+                    border: "1px solid #e2e8f0",
+                    boxShadow: "inset 0 1px 4px rgba(0,0,0,0.06)",
+                    padding: "clamp(0.75rem, 1.5vw, 1.25rem)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "0.75rem",
+                      overflow: "hidden",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                      backgroundColor: "#09090b",
+                    }}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} screenshot`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 800px"
+                      className="object-cover object-top"
+                      priority
+                    />
+                  </div>
+                </div>
+
+                {/* 3. Separate Tile: Project Overview */}
+                <div
+                  style={{
+                    borderRadius: "1.25rem",
+                    backgroundColor: "#f8fafc",
+                    border: "1px solid #e2e8f0",
+                    padding: "clamp(1.25rem, 2.5vw, 1.85rem)",
+                    boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.65rem", marginBottom: "0.85rem" }}>
+                    <div
+                      style={{
+                        width: "2rem",
+                        height: "2rem",
+                        borderRadius: "0.65rem",
+                        backgroundColor: "#dbeafe",
+                        color: "#1d4ed8",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <FileText size={16} strokeWidth={2.2} />
+                    </div>
+                    <h3
+                      style={{
+                        fontSize: "0.75rem",
+                        fontWeight: "700",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        color: "#1e40af",
+                        margin: 0,
+                      }}
+                    >
+                      Project Overview
+                    </h3>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "clamp(0.875rem, 1.2vw, 0.975rem)",
+                      color: "#1e293b",
+                      lineHeight: "1.75",
+                      fontWeight: "400",
+                      margin: 0,
+                    }}
+                  >
                     {project.longDescription || project.description}
                   </p>
                 </div>
 
-                {/* My Role */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-800 mb-2 flex items-center gap-2">
-                    <UserCheck size={15} className="text-neutral-900" />
-                    My Role &amp; Contributions
-                  </h3>
-                  <p className="text-sm text-neutral-600 leading-relaxed">
+                {/* 4. Separate Tile: My Role & Contributions */}
+                <div
+                  style={{
+                    borderRadius: "1.25rem",
+                    backgroundColor: "#f0fdf4",
+                    border: "1px solid #bbf7d0",
+                    padding: "clamp(1.25rem, 2.5vw, 1.85rem)",
+                    boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.65rem", marginBottom: "0.85rem" }}>
+                    <div
+                      style={{
+                        width: "2rem",
+                        height: "2rem",
+                        borderRadius: "0.65rem",
+                        backgroundColor: "#dcfce7",
+                        color: "#15803d",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <UserCheck size={16} strokeWidth={2.2} />
+                    </div>
+                    <h3
+                      style={{
+                        fontSize: "0.75rem",
+                        fontWeight: "700",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        color: "#166534",
+                        margin: 0,
+                      }}
+                    >
+                      My Role &amp; Contributions
+                    </h3>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "clamp(0.875rem, 1.2vw, 0.975rem)",
+                      color: "#14532d",
+                      lineHeight: "1.75",
+                      fontWeight: "400",
+                      margin: 0,
+                    }}
+                  >
                     {project.role ||
                       "Core engineering contribution, architecture design, and feature implementation."}
                   </p>
                 </div>
 
-                {/* Tech Stack Chips */}
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2.5 flex items-center gap-1.5">
-                    <Layers size={13} />
-                    Technologies &amp; Architecture
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
+                {/* 5. Separate Tile: Technologies & Architecture */}
+                <div
+                  style={{
+                    borderRadius: "1.25rem",
+                    backgroundColor: "#f8fafc",
+                    border: "1px solid #e2e8f0",
+                    padding: "clamp(1.25rem, 2.5vw, 1.85rem)",
+                    boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.65rem", marginBottom: "1rem" }}>
+                    <div
+                      style={{
+                        width: "2rem",
+                        height: "2rem",
+                        borderRadius: "0.65rem",
+                        backgroundColor: "#f3e8ff",
+                        color: "#7e22ce",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <Layers size={16} strokeWidth={2.2} />
+                    </div>
+                    <h3
+                      style={{
+                        fontSize: "0.75rem",
+                        fontWeight: "700",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        color: "#0f172a",
+                        margin: 0,
+                      }}
+                    >
+                      Technologies &amp; Architecture
+                    </h3>
+                  </div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.65rem" }}>
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 rounded-lg text-xs font-medium bg-white text-neutral-800 border border-neutral-200 shadow-2xs"
+                        style={{
+                          padding: "0.45rem 0.95rem",
+                          borderRadius: "0.75rem",
+                          fontSize: "0.85rem",
+                          fontWeight: "600",
+                          backgroundColor: "#ffffff",
+                          color: "#1e293b",
+                          border: "1px solid #cbd5e1",
+                          boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                        }}
                       >
                         {tech}
                       </span>
@@ -158,30 +348,85 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   </div>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="pt-4 border-t border-neutral-100 flex flex-wrap items-center gap-3">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary"
-                  >
-                    <GithubIcon width={16} height={16} />
-                    <span>View on GitHub</span>
-                    <ArrowUpRight size={15} />
-                  </a>
-
-                  {project.demoUrl && (
+                {/* 6. Action Buttons Tile */}
+                <div
+                  style={{
+                    paddingTop: "0.75rem",
+                    borderTop: "1px solid #f1f5f9",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                  }}
+                >
+                  <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.75rem" }}>
                     <a
-                      href={project.demoUrl}
+                      href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-outline"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.65rem",
+                        padding: "0.85rem 1.75rem",
+                        borderRadius: "9999px",
+                        backgroundColor: "#09090b",
+                        color: "#ffffff",
+                        fontSize: "0.875rem",
+                        fontWeight: "600",
+                        textDecoration: "none",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+                        cursor: "pointer",
+                      }}
                     >
-                      <ExternalLink size={15} />
-                      <span>Live Demo</span>
+                      <GithubIcon width={16} height={16} />
+                      <span>View on GitHub</span>
+                      <ArrowUpRight size={15} />
                     </a>
-                  )}
+
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "0.65rem",
+                          padding: "0.85rem 1.75rem",
+                          borderRadius: "9999px",
+                          backgroundColor: "#ffffff",
+                          color: "#09090b",
+                          border: "1px solid #d4d4d8",
+                          fontSize: "0.875rem",
+                          fontWeight: "600",
+                          textDecoration: "none",
+                          boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <ExternalLink size={15} />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={onClose}
+                    style={{
+                      padding: "0.65rem 1.25rem",
+                      borderRadius: "9999px",
+                      fontSize: "0.85rem",
+                      fontWeight: "600",
+                      color: "#64748b",
+                      backgroundColor: "#f1f5f9",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
             </div>

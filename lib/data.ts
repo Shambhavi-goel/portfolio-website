@@ -22,6 +22,8 @@ export const SOCIAL = {
   email: "shambhavigoel2@gmail.com",
   phone: "+91 9389588755",
   phoneHref: "+919389588755",
+  location: "Delhi, India",
+  relocationNotice: "Open to relocate for summer internship · Open to remote internships",
 };
 
 export const NAV_LINKS = [

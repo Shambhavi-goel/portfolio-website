@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, Send, CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, Send, CheckCircle2, AlertCircle, ArrowUpRight, MapPin } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import Container from "@/components/ui/Container";
@@ -117,7 +117,7 @@ export default function Contact() {
                 Let&apos;s Connect
               </h2>
               <p className="text-neutral-600 text-base sm:text-lg leading-relaxed max-w-xl">
-                Have an internship opportunity, a project to collaborate on, or just want to chat about AI &amp; tech? My inbox is always open.
+                Based in <strong className="text-neutral-900 font-semibold">Delhi, India</strong> — open to relocate for summer internships &amp; available for remote internships. Have an opportunity, a project to collaborate on, or just want to chat? My inbox is always open.
               </p>
             </SectionWrapper>
           </div>
@@ -130,39 +130,56 @@ export default function Contact() {
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
                   <h3 className="text-lg font-bold text-neutral-950">Direct Channels</h3>
-                  <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">Reach out directly via email or professional platforms.</p>
+                  <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">Reach out directly via email, phone, or professional platforms.</p>
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                {contactLinks.map(({ icon: Icon, label, value, href, border, iconBg }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target={href.startsWith("mailto") || href.startsWith("tel") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                    className={`portfolio-card flex items-center justify-between bg-white border rounded-3xl transition-all duration-300 group shadow-xs hover:shadow-md ${border}`}
+                  {contactLinks.map(({ icon: Icon, label, value, href, border, iconBg }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target={href.startsWith("mailto") || href.startsWith("tel") ? undefined : "_blank"}
+                      rel="noopener noreferrer"
+                      className={`portfolio-card flex items-center justify-between bg-white border rounded-3xl transition-all duration-300 group shadow-xs hover:shadow-md ${border}`}
+                      style={{ padding: "clamp(1.5rem, 2.5vw, 2.25rem)" }}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${iconBg}`}>
+                          <Icon width={22} height={22} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                          <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">{label}</p>
+                          <p className="text-sm sm:text-base font-semibold text-neutral-900 group-hover:text-blue-600 transition-colors">{value}</p>
+                        </div>
+                      </div>
+                      <ArrowUpRight size={18} className="text-neutral-400 group-hover:text-blue-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    </a>
+                  ))}
+
+                  {/* Location & Relocation Card */}
+                  <div
+                    className="portfolio-card flex items-center justify-between bg-white border border-rose-100/90 hover:border-rose-300 rounded-3xl transition-all duration-300 shadow-xs hover:shadow-md"
                     style={{ padding: "clamp(1.5rem, 2.5vw, 2.25rem)" }}
                   >
                     <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${iconBg}`}>
-                        <Icon width={22} height={22} />
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 bg-rose-50 text-rose-600">
+                        <MapPin width={22} height={22} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-                        <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">{label}</p>
-                        <p className="text-sm sm:text-base font-semibold text-neutral-900 group-hover:text-blue-600 transition-colors">{value}</p>
+                        <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">Location &amp; Mobility</p>
+                        <p className="text-sm sm:text-base font-semibold text-neutral-900">Delhi, India</p>
+                        <p className="text-xs text-neutral-500 font-medium">Open to relocate for summer internships · Open to remote internships</p>
                       </div>
                     </div>
-                    <ArrowUpRight size={18} className="text-neutral-400 group-hover:text-blue-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                  </a>
-                ))}
-              </div>
+                  </div>
+                </div>
 
-              <div className="pt-2 flex items-center gap-2 text-xs text-neutral-500">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Typically responds within 24 hours</span>
+                <div className="pt-2 flex items-center gap-2 text-xs text-neutral-500">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Typically responds within 24 hours</span>
+                </div>
               </div>
-            </div>
-          </SectionWrapper>
+            </SectionWrapper>
 
             {/* Right: Message Form Tile matching Image 2 */}
             <SectionWrapper delay={0.2} className="lg:col-span-7">

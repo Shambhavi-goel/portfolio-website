@@ -13,6 +13,7 @@ import {
   Cloud,
   Smartphone,
   Sparkles,
+  MapPin,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { SOCIAL } from "@/lib/data";
@@ -153,6 +154,11 @@ export default function Hero() {
                 >
                   {SOCIAL.phone}
                 </a>
+                <span className="w-px h-5 bg-neutral-300 hidden sm:inline-block" />
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm text-neutral-600 font-medium">
+                  <MapPin size={14} className="text-rose-500 shrink-0" />
+                  <span>Delhi, India</span>
+                </div>
               </div>
             </FadeUp>
 
@@ -186,7 +192,7 @@ export default function Hero() {
                 </div>
 
                 {/* Tile 3: Cloud & DevOps */}
-                <div
+                {/* <div
                   className="rounded-2xl bg-emerald-50/80 border border-emerald-200/90 hover:border-emerald-400 transition-all duration-200 flex items-center gap-3.5 shadow-xs group hover:-translate-y-1"
                   style={{ padding: "1.15rem 1.35rem" }}
                 >
@@ -196,7 +202,7 @@ export default function Hero() {
                   <span className="text-xs sm:text-sm font-bold text-emerald-950 leading-tight">
                     Cloud &amp; DevOps
                   </span>
-                </div>
+                </div> */}
 
                 {/* Tile 4: Mobile Apps */}
                 <div
@@ -213,14 +219,24 @@ export default function Hero() {
               </div>
             </FadeUp>
 
-            {/* 7. Status Pill */}
+            {/* 7. Status & Relocation Badges */}
             <FadeUp delay={0.52} className="pt-1">
-              <div
-                className="inline-flex items-center gap-2.5 rounded-full border border-emerald-200/90 bg-emerald-50 text-xs sm:text-sm font-semibold text-emerald-800 w-fit shadow-2xs leading-normal"
-                style={{ padding: "0.55rem 1.35rem" }}
-              >
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                <span>Available for internships &amp; collaborations</span>
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                <div
+                  className="inline-flex items-center gap-2.5 rounded-full border border-emerald-200/90 bg-emerald-50 text-xs sm:text-sm font-semibold text-emerald-800 w-fit shadow-2xs leading-normal"
+                  style={{ padding: "0.55rem 1.25rem" }}
+                >
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                  <span>Available for Remote Internships</span>
+                </div>
+
+                <div
+                  className="inline-flex items-center gap-2 rounded-full border border-blue-200/90 bg-blue-50 text-xs sm:text-sm font-semibold text-blue-800 w-fit shadow-2xs leading-normal"
+                  style={{ padding: "0.55rem 1.25rem" }}
+                >
+                  <MapPin size={14} className="text-blue-600 shrink-0" />
+                  <span>Delhi, India · Open to Relocate for summer internships</span>
+                </div>
               </div>
             </FadeUp>
 

@@ -82,11 +82,11 @@ export default function About() {
                         Hackathons have shaped my ability to think on my feet, collaborate efficiently under tight deadlines, and ship functional MVPs. Whether it&apos;s a women&apos;s safety system, a food distribution network, or a blockchain marketplace, I prioritize tangible impact.
                       </p>
                       <p>
-                        I am actively seeking{" "}
+                        Based in <strong className="text-neutral-900 font-semibold">Delhi, India</strong>, I am actively seeking{" "}
                         <strong className="text-neutral-900 font-semibold">
                           summer internships and collaborative engineering roles
                         </strong>{" "}
-                        where I can contribute meaningful code and grow alongside ambitious teams.
+                        — fully open to relocate for on-site summer internships and enthusiastic about remote internship opportunities.
                       </p>
                     </div>
                   </div>

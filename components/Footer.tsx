@@ -17,6 +17,8 @@ export default function BottomBar() {
         <div className="flex items-center gap-2 text-neutral-600 font-medium">
           <span className="font-bold text-neutral-900">Shambhavi Goel</span>
           <span>·</span>
+          <span>Delhi, India</span>
+          <span>·</span>
           <span>© {currentYear} All rights reserved</span>
         </div>
 

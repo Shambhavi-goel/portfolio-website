@@ -12,6 +12,7 @@ import {
   Code2,
   Smartphone,
   ArrowRight,
+  Sparkles,
 } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import Container from "@/components/ui/Container";
@@ -173,6 +174,36 @@ export default function About() {
                   </p>
                 </div>
               </motion.div>
+            </div>
+          </SectionWrapper>
+
+          {/* ── Currently Building & Learning ── */}
+          <SectionWrapper delay={0.22}>
+            <div className="w-full flex flex-col gap-4">
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <p className="text-xs font-bold text-blue-600 uppercase tracking-wider">
+                  CURRENTLY BUILDING &amp; LEARNING
+                </p>
+              </div>
+
+              <div
+                className="portfolio-card bg-white border border-blue-100/90 hover:border-blue-300 transition-all duration-300 rounded-3xl shadow-xs hover:shadow-md flex items-center gap-4 sm:gap-5"
+                style={{ padding: "clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.5rem, 3vw, 2.25rem)" }}
+              >
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                  <Sparkles size={22} />
+                </div>
+                <p className="text-sm sm:text-base text-neutral-700 leading-relaxed">
+                  Currently researching on,{" "}
+                  <strong className="text-neutral-950 font-semibold">
+                    Smart Sustainability Platform: Leveraging AI for real-time environmental impact assessment
+                  </strong>
+                </p>
+              </div>
             </div>
           </SectionWrapper>
 

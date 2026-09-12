@@ -6,11 +6,13 @@ import { PROJECTS, type Project, type ProjectTag } from "@/data/projects";
 import { CERTIFICATES, type CertificateItem } from "@/data/certificates";
 import { ACADEMIC_HISTORY, type AcademicEntry } from "@/data/academics";
 import { GALLERY_PHOTOS, type GalleryPhoto } from "@/data/gallery";
+import { DSA_PROFILES, DSA_OVERVIEW_STATS, CORE_DSA_TOPICS, type DSAProfile } from "@/data/dsa";
 
 export { PROJECTS, type Project, type ProjectTag };
 export { CERTIFICATES, type CertificateItem };
 export { ACADEMIC_HISTORY, type AcademicEntry };
 export { GALLERY_PHOTOS, type GalleryPhoto };
+export { DSA_PROFILES, DSA_OVERVIEW_STATS, CORE_DSA_TOPICS, type DSAProfile };
 
 // Backward compatibility alias for CertItem
 export type CertItem = CertificateItem;
@@ -31,6 +33,7 @@ export const NAV_LINKS = [
   { label: "Academics", href: "#academics" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "DSA", href: "#dsa" },
   { label: "Certificates", href: "#certificates" },
   { label: "Contact", href: "#contact" },
 ];

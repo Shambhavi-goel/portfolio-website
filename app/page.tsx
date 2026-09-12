@@ -4,6 +4,7 @@ import About from "@/components/About";
 import AcademicTimeline from "@/components/AcademicTimeline";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import DSAJourney from "@/components/DSAJourney";
 import CertificateGallery from "@/components/CertificateGallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -42,10 +43,16 @@ export default function Home() {
         {/* 5. Projects Carousel */}
         <Projects />
 
-        {/* Generous whitespace between Projects and Certificates */}
+        {/* Generous whitespace between Projects and DSA Journey */}
         <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
 
-        {/* 6. Certificates & Honors Carousel */}
+        {/* 6. DSA Journey & Competitive Programming */}
+        <DSAJourney />
+
+        {/* Generous whitespace between DSA Journey and Certificates */}
+        <div className="h-24 sm:h-32 lg:h-40" aria-hidden="true" />
+
+        {/* 7. Certificates & Honors Carousel */}
         <CertificateGallery />
 
         {/* Generous whitespace between Certificates and Contact */}

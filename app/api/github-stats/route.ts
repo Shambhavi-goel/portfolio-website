@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { INITIAL_GITHUB_DATA, GitHubStatsData, ContributionDay } from "@/data/github";
 
-export const revalidate = 3600; // ISR cache for 1 hour
+export const revalidate = 60; // ISR cache for 60 seconds
 
 const USERNAME = "Shambhavi-goel";
 
@@ -15,7 +15,7 @@ export async function GET() {
     // 1. Fetch User Profile
     const userRes = await fetch(`https://api.github.com/users/${USERNAME}`, {
       headers,
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     });
 
     let profileData: any = null;
@@ -28,7 +28,7 @@ export async function GET() {
       `https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=last`,
       {
         headers: { "User-Agent": "Portfolio-App-NextJS" },
-        next: { revalidate: 3600 },
+        next: { revalidate: 60 },
       }
     );
 
@@ -54,7 +54,7 @@ export async function GET() {
       `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=updated`,
       {
         headers,
-        next: { revalidate: 3600 },
+        next: { revalidate: 60 },
       }
     );
 

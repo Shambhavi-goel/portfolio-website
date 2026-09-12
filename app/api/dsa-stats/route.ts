@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-// Cache response for 1 hour (3600 seconds)
-export const revalidate = 3600;
+// Cache response for 60 seconds
+export const revalidate = 60;
 
 interface PlatformStats {
   leetcode: {
@@ -26,8 +26,8 @@ export async function GET() {
   // Baseline fallback numbers in case any platform API is down
   const stats: PlatformStats = {
     leetcode: {
-      solved: 72,
-      easy: 46,
+      solved: 74,
+      easy: 48,
       medium: 26,
       hard: 0,
     },
@@ -40,7 +40,7 @@ export async function GET() {
       solved: 31,
       submissions: 78,
     },
-    totalSolved: 168,
+    totalSolved: 170,
   };
 
   try {
@@ -66,7 +66,7 @@ export async function GET() {
             }`,
             variables: { username: "Pokemon_sg" },
           }),
-          next: { revalidate: 3600 },
+          next: { revalidate: 60 },
         });
 
         if (res.ok) {
@@ -89,7 +89,7 @@ export async function GET() {
           headers: {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
           },
-          next: { revalidate: 3600 },
+          next: { revalidate: 60 },
         });
 
         if (res.ok) {
@@ -107,7 +107,7 @@ export async function GET() {
       // 3. Codeforces Public REST API
       (async () => {
         const res = await fetch("https://codeforces.com/api/user.status?handle=Pokemon_sg", {
-          next: { revalidate: 3600 },
+          next: { revalidate: 60 },
         });
 
         if (res.ok) {

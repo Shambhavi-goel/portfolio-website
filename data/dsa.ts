@@ -26,7 +26,7 @@ export interface DSAProfile {
 
 export const DSA_OVERVIEW_STATS = [
   {
-    value: "168+",
+    value: "170+",
     label: "Problems Solved",
     subtext: "Across LeetCode, GFG & Codeforces",
     border: "border-emerald-100/90 hover:border-emerald-300",
@@ -62,8 +62,8 @@ export const DSA_PROFILES: DSAProfile[] = [
     handle: "Pokemon_sg",
     url: "https://leetcode.com/u/Pokemon_sg/",
     image: "/LeetCode.png",
-    tagline: "Consistent problem solver with 70+ algorithmic problems solved across Easy & Medium tiers.",
-    stats: "70+ Problems Solved",
+    tagline: "Consistent problem solver with 74+ algorithmic problems solved across Easy & Medium tiers.",
+    stats: "74+ Problems Solved",
     badge: "Consistent Solver",
     badgeColor: "bg-amber-50 text-amber-700 border-amber-200/80",
     cardBorder: "border-amber-100/90 hover:border-amber-300",
@@ -74,15 +74,15 @@ export const DSA_PROFILES: DSAProfile[] = [
     description:
       "Structured algorithmic problem solving focusing on Dynamic Programming, Two Pointers, Tree Traversals, and Binary Search.",
     longDescription:
-      "Active problem solver on LeetCode with 70+ accepted solutions. Focuses on mastering recurring interview patterns including sliding window, prefix sums, binary search on answer, tree and graph DFS/BFS, and memoized dynamic programming. Emphasizes clean C++ and Python implementations with optimal time and space complexity bounds.",
+      "Active problem solver on LeetCode with 74+ accepted solutions. Focuses on mastering recurring interview patterns including sliding window, prefix sums, binary search on answer, tree and graph DFS/BFS, and memoized dynamic programming. Emphasizes clean C++ and Python implementations with optimal time and space complexity bounds.",
     metrics: [
-      { label: "Problems Solved", value: "70+" },
-      { label: "Easy & Medium", value: "46 & 26" },
+      { label: "Problems Solved", value: "74+" },
+      { label: "Easy & Medium", value: "48 & 26" },
       { label: "Primary Stack", value: "C++ / Python" },
     ],
     highlights: [
-      "Solved 70+ curated problems across standard Blind 75 and LeetCode Top Interview patterns.",
-      "Balanced ratio of 46 Easy and 26 Medium problems demonstrating progressive complexity mastery.",
+      "Solved 74+ curated problems across standard Blind 75 and LeetCode Top Interview patterns.",
+      "Balanced ratio of 48 Easy and 26 Medium problems demonstrating progressive complexity mastery.",
     ],
     tags: ["Dynamic Programming", "Two Pointers", "Trees & Graphs", "Binary Search", "Sliding Window"],
   },

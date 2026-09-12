@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, ArrowUpRight, UserCheck, Layers, FileText } from "lucide-react";
+import { X, ExternalLink, ArrowUpRight, UserCheck, Layers, FileText, Download } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
 import { type Project } from "@/data/projects";
 
@@ -389,6 +389,33 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       >
                         <ExternalLink size={15} />
                         <span>Live Demo</span>
+                      </a>
+                    )}
+
+                    {project.apkUrl && (
+                      <a
+                        href={project.apkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "0.65rem",
+                          padding: "0.85rem 1.75rem",
+                          borderRadius: "9999px",
+                          backgroundColor: "#ffffff",
+                          color: "#09090b",
+                          border: "1px solid #d4d4d8",
+                          fontSize: "0.875rem",
+                          fontWeight: "600",
+                          textDecoration: "none",
+                          boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <Download size={15} />
+                        <span>APK File</span>
+                        <ArrowUpRight size={14} />
                       </a>
                     )}
                   </div>

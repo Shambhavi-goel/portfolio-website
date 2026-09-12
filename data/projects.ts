@@ -15,6 +15,7 @@ export interface Project {
   techStack: string[];
   github: string;
   demoUrl?: string;
+  apkUrl?: string;
   featured?: boolean;
   image: string;
   role?: string;
@@ -73,6 +74,7 @@ export const PROJECTS: Project[] = [
       "Leaflet.js",
     ],
     github: "https://github.com/pranjalg544/naarirakshak",
+    apkUrl: "https://github.com/pranjalg544/naarirakshak/releases/tag/v1.0.0",
     image: "/projects/narirakshak.png",
     // TODO: add specific role per project
     role: "Architected cross-platform client in Flutter and built WebSocket-driven real-time tracking pipelines with PostGIS route querying.",
@@ -89,6 +91,7 @@ export const PROJECTS: Project[] = [
     tags: ["Mobile"],
     techStack: ["Flutter", "Dart", "Node.js", "Express", "REST APIs"],
     github: "https://github.com/anandtejaswi/FoodLoop",
+    apkUrl: "https://github.com/anandtejaswi/FoodLoop/releases/tag/apk",
     image: "/projects/foodloop.png",
     // TODO: add specific role per project
     role: "Led mobile frontend development using Flutter; designed real-time listing workflows and integrated backend REST endpoints.",
@@ -121,6 +124,7 @@ export const PROJECTS: Project[] = [
     tags: ["Web"],
     techStack: ["React", "Node.js", "Express", "PostgreSQL", "Redis", "JWT"],
     github: "https://github.com/Nilaykumar25/Smart_Appointment_Queue_Management_System",
+    demoUrl: "https://smart-appointment-queue-management.vercel.app/",
     image: "/projects/saqms.png",
     // TODO: add specific role per project
     role: "Developed patient and administrative dashboard components and assisted in real-time queue synchronization logic.",
@@ -137,6 +141,7 @@ export const PROJECTS: Project[] = [
     tags: ["Web"],
     techStack: ["React", "Node.js", "Express", "MongoDB", "Leaflet", "Recharts", "JWT"],
     github: "https://github.com/Aman162004/clean-street",
+    demoUrl: "https://clean-street-phi.vercel.app/",
     image: "/projects/clean-street.png",
     // TODO: add specific role per project
     role: "Architected and crafted the frontend user experience using React; engineered the responsive citizen reporting portal.",

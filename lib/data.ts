@@ -45,60 +45,39 @@ export const NAV_LINKS = [
 export interface SkillGroup {
   category: string;
   icon: string;
-  skills: { name: string; level: number }[];
+  skills: string[];
 }
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     category: "Languages",
     icon: "Code2",
-    skills: [
-      { name: "Python", level: 70 },
-      { name: "C", level: 75 },
-      { name: "C++", level: 78 },
-    ],
+    skills: ["C++", "C", "Python", "TypeScript", "JavaScript", "Dart", "SQL"],
   },
   {
     category: "Web & Mobile",
     icon: "Globe",
-    skills: [
-      { name: "HTML / CSS", level: 88 },
-      { name: "JavaScript", level: 70 },
-      { name: "Flutter", level: 80 },
-    ],
+    skills: ["React", "Next.js", "Flutter", "Node.js", "Express", "Tailwind CSS", "HTML5 / CSS3"],
   },
   {
-    category: "Data & ML",
+    category: "AI & Machine Learning",
     icon: "BrainCircuit",
-    skills: [
-      { name: "Data Cleaning & EDA", level: 85 },
-      { name: "Feature Engineering", level: 80 },
-      { name: "ML Classification Models", level: 82 },
-    ],
+    skills: ["Computer Vision", "OpenCV", "scikit-learn", "InsightFace", "ArcFace", "NumPy", "Pandas"],
   },
   {
-    category: "Tools & Databases",
+    category: "Databases & Cloud",
     icon: "Database",
-    skills: [
-      { name: "MySQL", level: 78 },
-      { name: "Git", level: 85 },
-    ],
+    skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "AWS Cloud", "Prisma ORM", "Docker"],
   },
   {
-    category: "CS Core",
+    category: "Core CS & Algorithms",
     icon: "BookOpen",
-    skills: [
-      { name: "Data Structures & Algorithms", level: 88 },
-      { name: "Competitive Programming", level: 80 },
-    ],
+    skills: ["Data Structures", "Algorithms", "Competitive Programming", "OOP", "DBMS", "Operating Systems"],
   },
   {
-    category: "AI & Cloud (AWS)",
+    category: "Tools & Architecture",
     icon: "Cloud",
-    skills: [
-      { name: "ML Foundations (AWS)", level: 75 },
-      { name: "Intro to Gen AI (AWS)", level: 72 },
-      { name: "Intro to Cloud 101 (AWS)", level: 74 },
-    ],
+    skills: ["Git", "GitHub", "REST APIs", "Socket.io", "PostGIS", "Leaflet.js", "JWT Auth"],
   },
 ];
+

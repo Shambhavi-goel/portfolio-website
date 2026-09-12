@@ -42,6 +42,16 @@ export const CERTIFICATES: CertificateItem[] = [
     type: "award",
   },
   {
+    id: "nari-kavach-yantrika",
+    title: "Nari Kavach – Yantrika 1.0",
+    image: "/certificates/previews/nari_kavach.png",
+    fileUrl: "/certificates/nari_kavach.pdf",
+    issuer: "Faculty of Technology, University of Delhi",
+    year: "2026",
+    type: "award",
+    detail: "Team TechTwins · Innovate & Elevate",
+  },
+  {
     id: "smart-india-hackathon-2024",
     title: "Smart India Hackathon 2024 (FoT Internal Hackathon)",
     image: "/certificates/previews/certificate.png",

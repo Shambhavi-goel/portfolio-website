@@ -51,6 +51,15 @@ export const CERTIFICATES: CertificateItem[] = [
     type: "award",
   },
   {
+    id: "nestle-elearning-resilience",
+    title: "Nestlé E-learning 2026 | Resilience",
+    image: "/certificates/previews/nestle_certificate_centered.png",
+    fileUrl: "/certificates/nestle_certificate.pdf",
+    issuer: "Nestlé (Nesternship)",
+    year: "2026",
+    type: "certification",
+  },
+  {
     id: "quizoff-2026-ai-quiz",
     title: "QuizOff 2026: India's Biggest AI Quiz",
     image: "/certificates/previews/822602d2-26c7-4615-b03f-72f304bdef25.png",

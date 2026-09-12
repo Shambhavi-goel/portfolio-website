@@ -22,6 +22,36 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    id: "client-project-dashboard",
+    slug: "client-project-dashboard",
+    title: "Client Project Dashboard",
+    tagline:
+      "Real-time, role-based project management dashboard with live activity feeds and instant notifications.",
+    description:
+      "Real-time, role-based project management dashboard with live activity feeds and instant notifications.",
+    longDescription:
+      "End-to-end multi-tenant dashboard with role-based access control for Admins, Project Managers, and Developers. Features live Socket.io activity feeds, real-time presence tracking, automated overdue-task detection, and a secure JWT auth flow with refresh-token rotation. Built as a production-grade monorepo designed for concurrent multi-role evaluation.",
+    tags: ["Web"],
+    techStack: [
+      "TypeScript",
+      "React",
+      "Vite",
+      "TailwindCSS",
+      "Node.js",
+      "Express",
+      "Prisma",
+      "PostgreSQL",
+      "Socket.io",
+      "JWT",
+      "Docker",
+    ],
+    github: "https://github.com/Shambhavi-goel/client_project_dashboard",
+    demoUrl: "https://client-project-dashboard-frontend-six.vercel.app",
+    featured: true,
+    image: "/projects/client_project_dashboard.png",
+    role: "Architected the full-stack monorepo end-to-end — designed the Prisma/PostgreSQL schema with query-level data scoping, built the Express REST API with role-based middleware, and implemented Socket.io room-based broadcasting (global:admin, project:<id>, user:<id>) for authorized, scoped real-time updates. Built the React/Vite frontend with TanStack Query cache invalidation synced to live socket events, and set up a node-cron background scanner for automatic overdue-task flagging.",
+  },
+  {
     id: "narirakshak",
     slug: "narirakshak",
     title: "NariRakshak",

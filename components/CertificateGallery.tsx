@@ -19,7 +19,6 @@ export default function CertificateGallery() {
     year: cert.year,
     tag: cert.issuer || "Verified Credential",
     subtitle: cert.issuer ? `Issued by ${cert.issuer}${cert.year ? ` · ${cert.year}` : ""}` : undefined,
-    description: cert.detail,
   }));
 
   return (

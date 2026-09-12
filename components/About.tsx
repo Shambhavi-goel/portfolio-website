@@ -98,7 +98,7 @@ export default function About() {
           {/* ── ROW 2: 4 Stat Cards in 1 Row ── */}
           <SectionWrapper delay={0.2}>
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-              {/* Stat 1: 6+ Projects Completed */}
+              {/* Stat 1: 7+ Projects Completed */}
               <motion.div
                 whileHover={{ y: -2 }}
                 className="portfolio-card flex items-center gap-4 bg-white border border-emerald-100 hover:border-emerald-300 transition-all duration-200 rounded-3xl"
@@ -109,7 +109,7 @@ export default function About() {
                 </div>
                 <div>
                   <p className="text-2xl sm:text-3xl font-extrabold text-neutral-950 tracking-tight leading-none">
-                    6+
+                    7+
                   </p>
                   <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 font-medium leading-tight">
                     Projects Completed

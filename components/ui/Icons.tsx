@@ -61,18 +61,41 @@ export function GeeksforGeeksIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function CodeforcesIcon(props: SVGProps<SVGSVGElement>) {
+export function CodeforcesIcon({ fill, ...props }: SVGProps<SVGSVGElement>) {
+  const isCurrentColor = fill === "currentColor";
   return (
     <svg
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
+      fill={fill}
       {...props}
     >
-      <rect x="2" y="9.5" width="4.5" height="12" rx="1.5" fill="#f59e0b" />
-      <rect x="9.75" y="3.5" width="4.5" height="18" rx="1.5" fill="#3b82f6" />
-      <rect x="17.5" y="14" width="4.5" height="7.5" rx="1.5" fill="#ef4444" />
+      <rect x="2" y="9.5" width="4.5" height="12" rx="1.5" fill={isCurrentColor ? "currentColor" : "#f59e0b"} />
+      <rect x="9.75" y="3.5" width="4.5" height="18" rx="1.5" fill={isCurrentColor ? "currentColor" : "#3b82f6"} />
+      <rect x="17.5" y="14" width="4.5" height="7.5" rx="1.5" fill={isCurrentColor ? "currentColor" : "#ef4444"} />
     </svg>
   );
 }
+
+export function MailIcon({ fill, stroke, strokeWidth, ...props }: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth || 2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <path d="M 3.5 6.5 L 12 13.5 L 20.5 6.5" />
+    </svg>
+  );
+}
+

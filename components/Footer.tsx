@@ -1,7 +1,7 @@
 "use client";
 
-import { Mail, Phone } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
+import { Phone } from "lucide-react";
+import { GithubIcon, LinkedinIcon, MailIcon } from "@/components/ui/Icons";
 import { SOCIAL } from "@/lib/data";
 
 export default function BottomBar() {
@@ -39,7 +39,7 @@ export default function BottomBar() {
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-700 hover:text-blue-600 font-medium transition-colors shadow-2xs hover:shadow-xs"
             aria-label="Send email"
           >
-            <Mail size={14} className="text-blue-600" />
+            <MailIcon width={14} height={14} className="text-blue-600" />
             <span className="hidden md:inline">{SOCIAL.email}</span>
             <span className="md:hidden">Email</span>
           </a>

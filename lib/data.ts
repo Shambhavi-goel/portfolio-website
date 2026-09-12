@@ -21,6 +21,9 @@ export const CERTIFICATIONS = CERTIFICATES;
 export const SOCIAL = {
   github: "https://github.com/Shambhavi-goel",
   linkedin: "https://www.linkedin.com/in/shambhavi-goel-29110b388/",
+  leetcode: "https://leetcode.com/u/Pokemon_sg/",
+  geeksforgeeks: "https://www.geeksforgeeks.org/profile/shambhavikikp?tab=activity",
+  codeforces: "https://codeforces.com/profile/Pokemon_sg",
   email: "shambhavigoel2@gmail.com",
   phone: "+91 9389588755",
   phoneHref: "+919389588755",

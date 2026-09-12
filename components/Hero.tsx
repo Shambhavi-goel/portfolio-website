@@ -15,7 +15,14 @@ import {
   Sparkles,
   MapPin,
 } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  LeetCodeIcon,
+  GeeksforGeeksIcon,
+  CodeforcesIcon,
+  MailIcon,
+} from "@/components/ui/Icons";
 import { SOCIAL } from "@/lib/data";
 import Container from "@/components/ui/Container";
 
@@ -41,10 +48,13 @@ function FadeUp({
 }
 
 const socials = [
-  { icon: GithubIcon, href: SOCIAL.github, label: "GitHub" },
-  { icon: LinkedinIcon, href: SOCIAL.linkedin, label: "LinkedIn" },
-  { icon: Mail, href: `mailto:${SOCIAL.email}`, label: "Email" },
-  { icon: Phone, href: `tel:${SOCIAL.phoneHref}`, label: "Phone" },
+  { icon: GithubIcon, href: SOCIAL.github, label: "GitHub", color: "#24292e" },
+  { icon: LinkedinIcon, href: SOCIAL.linkedin, label: "LinkedIn", color: "#0A66C2" },
+  { icon: LeetCodeIcon, href: SOCIAL.leetcode, label: "LeetCode", color: "#FFA116" },
+  { icon: GeeksforGeeksIcon, href: SOCIAL.geeksforgeeks, label: "GeeksforGeeks", color: "#2F8D46" },
+  { icon: CodeforcesIcon, href: SOCIAL.codeforces, label: "Codeforces", color: "#3B82F6" },
+  { icon: MailIcon, href: `mailto:${SOCIAL.email}`, label: "Email", color: "#EA4335" },
+  { icon: Phone, href: `tel:${SOCIAL.phoneHref}`, label: "Phone", color: "#25D366" },
 ];
 
 export default function Hero() {
@@ -117,7 +127,7 @@ export default function Hero() {
                   className="inline-flex items-center gap-2 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300 text-xs sm:text-sm font-semibold hover:border-neutral-400 hover:scale-[1.02] transition-all shadow-xs cursor-pointer whitespace-nowrap"
                   style={{ padding: "0.55rem 1.15rem" }}
                 >
-                  <Mail size={15} />
+                  <MailIcon width={15} height={15} />
                   <span>Contact Me</span>
                 </a>
               </div>
@@ -127,14 +137,16 @@ export default function Hero() {
             <FadeUp delay={0.4}>
               <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-neutral-600">
                 <div className="flex items-center gap-3">
-                  {socials.map(({ icon: Icon, href, label }) => (
+                  {socials.map(({ icon: Icon, href, label, color }) => (
                     <a
                       key={label}
                       href={href}
                       target={href.startsWith("mailto") || href.startsWith("tel") ? undefined : "_blank"}
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="p-1 text-neutral-500 hover:text-neutral-950 transition-colors duration-150 hover:scale-110"
+                      title={label}
+                      style={{ color }}
+                      className="p-1 transition-all duration-200 hover:scale-120 hover:opacity-80"
                     >
                       <Icon width={20} height={20} />
                     </a>

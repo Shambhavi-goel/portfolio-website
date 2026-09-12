@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, Send, CheckCircle2, AlertCircle, ArrowUpRight, MapPin } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
+import { Phone, Send, CheckCircle2, AlertCircle, ArrowUpRight, MapPin } from "lucide-react";
+import { GithubIcon, LinkedinIcon, MailIcon } from "@/components/ui/Icons";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import Container from "@/components/ui/Container";
 import { SOCIAL } from "@/lib/data";
@@ -13,7 +13,7 @@ type Status = "idle" | "loading" | "success" | "error";
 
 const contactLinks = [
   {
-    icon: Mail,
+    icon: MailIcon,
     label: "Email",
     value: SOCIAL.email,
     href: `mailto:${SOCIAL.email}`,

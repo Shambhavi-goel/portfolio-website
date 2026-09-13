@@ -26,21 +26,21 @@ export async function GET() {
   // Baseline fallback numbers in case any platform API is down
   const stats: PlatformStats = {
     leetcode: {
-      solved: 74,
-      easy: 48,
-      medium: 26,
+      solved: 77,
+      easy: 50,
+      medium: 27,
       hard: 0,
     },
     geeksforgeeks: {
-      solved: 65,
-      score: 123,
+      solved: 67,
+      score: 131,
       rank: 8,
     },
     codeforces: {
       solved: 31,
       submissions: 78,
     },
-    totalSolved: 170,
+    totalSolved: 175,
   };
 
   try {
@@ -87,16 +87,16 @@ export async function GET() {
       (async () => {
         const res = await fetch("https://www.geeksforgeeks.org/profile/shambhavikikp", {
           headers: {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
           },
           next: { revalidate: 60 },
         });
 
         if (res.ok) {
           const html = await res.text();
-          const scoreMatch = html.match(/"score":\s*(\d+)/);
-          const solvedMatch = html.match(/"total_problems_solved":\s*(\d+)/);
-          const rankMatch = html.match(/"institute_rank":\s*(\d+)/);
+          const scoreMatch = html.match(/\\?"score\\"?\s*:\s*(\d+)/);
+          const solvedMatch = html.match(/\\?"total_problems_solved\\"?\s*:\s*(\d+)/);
+          const rankMatch = html.match(/\\?"institute_rank\\"?\s*:\s*(\d+)/);
 
           if (scoreMatch) stats.geeksforgeeks.score = parseInt(scoreMatch[1], 10);
           if (solvedMatch) stats.geeksforgeeks.solved = parseInt(solvedMatch[1], 10);

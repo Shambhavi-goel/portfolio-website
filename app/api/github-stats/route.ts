@@ -25,7 +25,7 @@ export async function GET() {
 
     // 2. Fetch Contributions
     const contribRes = await fetch(
-      `https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=last`,
+      `https://github-contributions-api.jogruber.de/v4/${USERNAME}`,
       {
         headers: { "User-Agent": "Portfolio-App-NextJS" },
         next: { revalidate: 60 },
@@ -34,18 +34,32 @@ export async function GET() {
 
     let contributions: ContributionDay[] = [];
     let totalContributionsYear = INITIAL_GITHUB_DATA.totalContributionsYear;
+    let allTimeContributions = INITIAL_GITHUB_DATA.streak.totalContributions;
 
     if (contribRes.ok) {
       const contribData = await contribRes.json();
       if (Array.isArray(contribData?.contributions)) {
-        contributions = contribData.contributions.map((c: any) => ({
-          date: c.date,
-          count: Number(c.count) || 0,
-          level: Number(c.level) || 0,
-        }));
+        contributions = contribData.contributions
+          .map((c: any) => ({
+            date: c.date,
+            count: Number(c.count) || 0,
+            level: Number(c.level) || 0,
+          }))
+          .sort((a: ContributionDay, b: ContributionDay) => a.date.localeCompare(b.date));
       }
-      if (contribData?.total?.lastYear) {
+      if (contribData?.total?.["2026"]) {
+        totalContributionsYear = Number(contribData.total["2026"]);
+      } else if (contribData?.total?.lastYear) {
         totalContributionsYear = Number(contribData.total.lastYear);
+      }
+
+      if (contribData?.total) {
+        const yearSum = Object.entries(contribData.total)
+          .filter(([key]) => key !== "lastYear")
+          .reduce((sum, [, val]) => sum + (Number(val) || 0), 0);
+        if (yearSum > 0) {
+          allTimeContributions = yearSum;
+        }
       }
     }
 
@@ -222,7 +236,7 @@ export async function GET() {
       },
       languages,
       streak: {
-        totalContributions: totalContributionsYear,
+        totalContributions: allTimeContributions,
         totalRange: INITIAL_GITHUB_DATA.streak.totalRange,
         currentStreak,
         currentStreakRange,

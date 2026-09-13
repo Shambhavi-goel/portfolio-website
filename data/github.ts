@@ -56,7 +56,7 @@ export const INITIAL_GITHUB_DATA: GitHubStatsData = {
   htmlUrl: "https://github.com/Shambhavi-goel",
   overview: {
     stars: 0,
-    commits: 185,
+    commits: 204,
     prs: 1,
     issues: 0,
     contributedTo: 7,
@@ -71,15 +71,14 @@ export const INITIAL_GITHUB_DATA: GitHubStatsData = {
     { name: "HTML", percentage: 0.15, color: "#e34c26" },
   ],
   streak: {
-    totalContributions: 198,
+    totalContributions: 229,
     totalRange: "Aug 13, 2024 - Present",
-    currentStreak: 6,
-    currentStreakRange: "Sep 7 - Sep 12",
+    currentStreak: 7,
+    currentStreakRange: "Sep 7 - Sep 13",
     longestStreak: 7,
-    longestStreakRange: "Mar 17 - Mar 23",
+    longestStreakRange: "Sep 7 - Sep 13",
   },
   last30Days: [
-    { date: "Aug 14", count: 0 },
     { date: "Aug 15", count: 0 },
     { date: "Aug 16", count: 0 },
     { date: "Aug 17", count: 2 },
@@ -108,10 +107,11 @@ export const INITIAL_GITHUB_DATA: GitHubStatsData = {
     { date: "Sep 09", count: 18 },
     { date: "Sep 10", count: 7 },
     { date: "Sep 11", count: 20 },
-    { date: "Sep 12", count: 29 },
+    { date: "Sep 12", count: 34 },
+    { date: "Sep 13", count: 19 },
   ],
   contributions: [], // dynamically loaded or generated
-  totalContributionsYear: 198,
+  totalContributionsYear: 217,
   year: 2026,
   updatedAt: new Date().toISOString(),
 };

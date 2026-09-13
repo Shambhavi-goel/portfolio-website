@@ -66,7 +66,7 @@ export default function DSAJourney() {
 
   // Compute live updated 4 top stats
   const currentTopStats = useMemo(() => {
-    const totalCount = liveStats?.totalSolved ?? 168;
+    const totalCount = liveStats?.totalSolved ?? 175;
     const gfgRank = liveStats?.geeksforgeeks?.rank ?? 8;
 
     return [
@@ -109,11 +109,13 @@ export default function DSAJourney() {
   const profiles = useMemo(() => {
     return DSA_PROFILES.map((profile) => {
       if (profile.id === "leetcode" && liveStats?.leetcode) {
+        const solved = liveStats.leetcode.solved;
         return {
           ...profile,
-          stats: `${liveStats.leetcode.solved}+ Problems Solved`,
+          tagline: `Consistent problem solver with ${solved}+ algorithmic problems solved across Easy & Medium tiers.`,
+          stats: `${solved}+ Problems Solved`,
           metrics: [
-            { label: "Problems Solved", value: `${liveStats.leetcode.solved}+` },
+            { label: "Problems Solved", value: `${solved}+` },
             { label: "Easy & Medium", value: `${liveStats.leetcode.easy} & ${liveStats.leetcode.medium}` },
             { label: "Primary Stack", value: "C++ / Python" },
           ],
@@ -121,23 +123,28 @@ export default function DSAJourney() {
       }
 
       if (profile.id === "geeksforgeeks" && liveStats?.geeksforgeeks) {
+        const { rank, score, solved } = liveStats.geeksforgeeks;
         return {
           ...profile,
-          stats: `Rank #${liveStats.geeksforgeeks.rank} · Score ${liveStats.geeksforgeeks.score}`,
+          tagline: `Rank #${rank} at Faculty of Technology, Delhi University with a ${score} coding score and ${solved}+ problems solved.`,
+          stats: `Rank #${rank} · Score ${score}`,
           metrics: [
-            { label: "Problems Solved", value: `${liveStats.geeksforgeeks.solved}+` },
-            { label: "Institute Rank", value: `#${liveStats.geeksforgeeks.rank} FoT DU` },
-            { label: "Coding Score", value: `${liveStats.geeksforgeeks.score}` },
+            { label: "Problems Solved", value: `${solved}+` },
+            { label: "Institute Rank", value: `#${rank} FoT DU` },
+            { label: "Coding Score", value: `${score}` },
           ],
         };
       }
 
       if (profile.id === "codeforces" && liveStats?.codeforces) {
+        const { solved, submissions } = liveStats.codeforces;
         return {
           ...profile,
+          tagline: `Algorithmic problem solver with ${solved}+ problems solved across ${submissions} competitive submissions.`,
+          stats: `${solved}+ Solved · ${submissions} Submissions`,
           metrics: [
-            { label: "Core Focus", value: "Speed & Logic" },
-            { label: "Solved Problems", value: `${liveStats.codeforces.solved}+` },
+            { label: "Solved Problems", value: `${solved}+` },
+            { label: "Total Submissions", value: `${submissions}` },
             { label: "Language Stack", value: "C++ (STL)" },
           ],
         };
@@ -280,6 +287,12 @@ export default function DSAJourney() {
                           <p className="text-xs sm:text-sm text-neutral-600 line-clamp-2 leading-relaxed font-normal">
                             {profile.tagline || profile.description}
                           </p>
+                          <div className="flex items-center gap-2 mt-2.5">
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200/80">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                              {profile.stats}
+                            </span>
+                          </div>
                         </div>
 
                         <div className="pt-3.5 border-t border-neutral-100 flex flex-wrap items-center justify-between gap-2.5">

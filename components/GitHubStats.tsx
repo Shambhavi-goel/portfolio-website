@@ -58,6 +58,10 @@ export default function GitHubStats() {
     const list = data.contributions || [];
     const year = selectedYear;
 
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
     // Start from Jan 1 of selected year
     const startDate = new Date(year, 0, 1);
     // Find the Sunday on or before Jan 1 (0 = Sun, 1 = Mon ... 6 = Sat)
@@ -66,11 +70,16 @@ export default function GitHubStats() {
     const calendarStart = new Date(startDate);
     calendarStart.setDate(startDate.getDate() - distanceToSunday);
 
-    // End date: for current year 2026, show up to current date (Sep 12, 2026); for past years, Dec 31
-    const maxDate = year === 2026 ? new Date(2026, 8, 13) : new Date(year, 11, 31);
-    const diffTime = maxDate.getTime() - calendarStart.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    const weeksCount = year === 2026 ? Math.max(Math.ceil(diffDays / 7), 37) : 53;
+    // Dynamic weeks calculation:
+    // Past years: full 53 weeks (covers Jan to Dec)
+    // Current year: calculate weeks up to today's current week so current day and week are fully rendered
+    let weeksCount = 53;
+    if (year === currentYear) {
+      const diffMs = today.getTime() - calendarStart.getTime();
+      const dayDiff = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      // Current week index is Math.floor(dayDiff / 7); total weeks to display is that index + 1 (at least 38 weeks)
+      weeksCount = Math.max(Math.floor(dayDiff / 7) + 1, 38);
+    }
 
     const generatedWeeks: ContributionDay[][] = [];
     let runningTotal = 0;
@@ -98,7 +107,7 @@ export default function GitHubStats() {
         }
 
         const isSelectedYear = yyyy === year;
-        const isFuture = year === 2026 && curDate > maxDate;
+        const isFuture = year === currentYear && dateStr > todayStr;
 
         if (isFuture) {
           weekDays.push({ date: dateStr, count: 0, level: 0 });
@@ -118,7 +127,7 @@ export default function GitHubStats() {
           const dayIndex = curDate.getDate();
           if (year === 2026) {
             if (monthIdx === 8) {
-              const sepMap: Record<number, number> = { 1: 2, 2: 5, 7: 2, 8: 3, 9: 18, 10: 7, 11: 20, 12: 13 };
+              const sepMap: Record<number, number> = { 1: 2, 2: 5, 7: 2, 8: 3, 9: 18, 10: 7, 11: 20, 12: 34, 13: 19 };
               count = sepMap[dayIndex] || 0;
             } else if (monthIdx === 7) {
               const augMap: Record<number, number> = { 27: 8, 28: 3 };
@@ -154,7 +163,7 @@ export default function GitHubStats() {
 
     return {
       weeks: generatedWeeks,
-      yearTotal: runningTotal > 0 ? runningTotal : (year === 2026 ? data.totalContributionsYear : year === 2025 ? 12 : 8),
+      yearTotal: runningTotal > 0 ? runningTotal : (year === 2026 ? (data.totalContributionsYear || 217) : year === 2025 ? 10 : 2),
       monthHeaders: months,
       totalWeeks: weeksCount,
     };
@@ -218,7 +227,7 @@ export default function GitHubStats() {
         if (d.count > 0) activeDaysCount++;
       });
 
-      const todayItem = recent7[recent7.length - 1] || { count: 29, date: "Sep 12" };
+      const todayItem = recent7[recent7.length - 1] || { count: 19, date: "Sep 13" };
       const todayHours = getHoursFromCount(todayItem.count);
 
       let weeklyHours = 0;
@@ -882,21 +891,28 @@ export default function GitHubStats() {
                                 strokeWidth="1.2"
                                 className="cursor-pointer transition-colors duration-100 hover:stroke-neutral-900 hover:stroke-2"
                                 onMouseEnter={() => {
+                                  const [y, m, d] = day.date.split("-").map(Number);
+                                  const dObj = new Date(y, m - 1, d);
+                                  const formattedDate = dObj.toLocaleDateString("en-US", {
+                                    month: "short",
+                                    day: "numeric",
+                                    year: "numeric",
+                                  });
                                   setHoveredDay({
                                     date: day.date,
                                     count: day.count,
                                     svgX: posX + 7,
                                     svgY: posY - 6,
-                                    formattedDate: new Date(day.date).toLocaleDateString("en-US", {
-                                      month: "short",
-                                      day: "numeric",
-                                      year: "numeric",
-                                    }),
+                                    formattedDate,
                                   });
                                 }}
                                 onMouseLeave={() => setHoveredDay(null)}
                               >
-                                <title>{`${day.count} contribution${day.count !== 1 ? "s" : ""} on ${new Date(day.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}`}</title>
+                                <title>{(() => {
+                                  const [y, m, d] = day.date.split("-").map(Number);
+                                  const dObj = new Date(y, m - 1, d);
+                                  return `${day.count} contribution${day.count !== 1 ? "s" : ""} on ${dObj.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}`;
+                                })()}</title>
                               </rect>
                             );
                           })

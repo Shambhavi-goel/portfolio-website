@@ -171,17 +171,39 @@ export default function GitHubStats() {
 
   // SVG Sparkline calculation for Last 30 Days
   const sparklineData = useMemo(() => {
-    const points = data.last30Days || [];
-    if (points.length === 0) return { path: "", area: "", max: 1, todayCount: 0 };
+    let points = data.last30Days || [];
 
+    // Fallback: If last30Days is empty or all zeroes while contributions exist, derive from contributions
+    const isAllZero = points.length === 0 || points.every((p) => p.count === 0);
+    if (isAllZero && data.contributions && data.contributions.length > 0) {
+      const now = new Date();
+      const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+      const valid = data.contributions
+        .filter((c) => c.date <= todayStr)
+        .sort((a, b) => a.date.localeCompare(b.date));
+      if (valid.length > 0) {
+        points = valid.slice(-30).map((c) => {
+          const d = new Date(c.date);
+          return {
+            date: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+            count: c.count,
+          };
+        });
+      }
+    }
+
+    if (points.length === 0) return { path: "", area: "", max: 1, todayCount: 0, coords: [], total30: 0 };
+
+    const total30 = points.reduce((acc, p) => acc + (p.count || 0), 0);
     const max = Math.max(...points.map((p) => p.count), 1);
     const width = 600;
     const height = 70;
-    const paddingBottom = 8;
+    const paddingBottom = 10;
     const paddingTop = 12;
+    const paddingX = 8;
 
     const coords = points.map((p, index) => {
-      const x = (index / (points.length - 1)) * width;
+      const x = paddingX + (index / (points.length - 1)) * (width - 2 * paddingX);
       const normalized = p.count / max;
       const y = height - paddingBottom - normalized * (height - paddingTop - paddingBottom);
       return { x, y, count: p.count, date: p.date };
@@ -195,11 +217,13 @@ export default function GitHubStats() {
       linePath += ` C ${mx} ${p0.y}, ${mx} ${p1.y}, ${p1.x} ${p1.y}`;
     }
 
-    const areaPath = `${linePath} L ${width} ${height} L 0 ${height} Z`;
-    const todayCount = points[points.length - 1]?.count || 7;
+    const firstX = coords[0].x;
+    const lastX = coords[coords.length - 1].x;
+    const areaPath = `${linePath} L ${lastX} ${height} L ${firstX} ${height} Z`;
+    const todayCount = points[points.length - 1]?.count || 0;
 
-    return { path: linePath, area: areaPath, max, coords, todayCount };
-  }, [data.last30Days]);
+    return { path: linePath, area: areaPath, max, coords, todayCount, total30 };
+  }, [data.last30Days, data.contributions]);
 
   // Dynamic Coding Hours Calculation directly derived from live GitHub contributions
   const codingHoursData = useMemo(() => {
@@ -213,7 +237,11 @@ export default function GitHubStats() {
       return Number(Math.min(9.5, 7.8 + (count - 20) * 0.12).toFixed(1));
     };
 
-    const list = data.contributions && data.contributions.length > 0 ? data.contributions : [];
+    const rawList = data.contributions && data.contributions.length > 0 ? data.contributions : [];
+    const now = new Date();
+    const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    const pastFiltered = rawList.filter((d) => d.date <= todayStr);
+    const list = pastFiltered.length > 0 ? pastFiltered : rawList;
 
     if (list.length === 0) {
       const recent30 = data.last30Days || [];
@@ -593,6 +621,11 @@ export default function GitHubStats() {
                   <span className="text-neutral-500 font-bold uppercase tracking-wider">
                     Last 30 days Activity Trend
                   </span>
+                  {sparklineData.total30 > 0 && (
+                    <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100/60 font-mono">
+                      {sparklineData.total30} contributions
+                    </span>
+                  )}
                 </div>
 
                 {/* SVG Sparkline Container */}

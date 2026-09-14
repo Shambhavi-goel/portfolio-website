@@ -120,8 +120,18 @@ export async function GET() {
     let last30Days = INITIAL_GITHUB_DATA.last30Days;
 
     if (contributions.length > 0) {
+      // Contributions from jogruber API contain the entire current year (including future dates until Dec 31 with count: 0).
+      // Filter out future dates so streak and last 30 days calculations are based strictly on days up to today.
+      const now = new Date();
+      const localDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+      const utcDate = now.toISOString().split("T")[0];
+      const latestActiveDate = contributions.filter((c) => c.count > 0).pop()?.date || localDate;
+      const cutoffDate = [localDate, utcDate, latestActiveDate].sort().pop() || localDate;
+
+      const pastContributions = contributions.filter((c) => c.date <= cutoffDate);
+
       // Last 30 days sparkline
-      const slice30 = contributions.slice(-30);
+      const slice30 = (pastContributions.length > 0 ? pastContributions : contributions).slice(-30);
       last30Days = slice30.map((item) => {
         const d = new Date(item.date);
         const month = d.toLocaleDateString("en-US", { month: "short" });
@@ -143,9 +153,9 @@ export async function GET() {
       let tempStreak = 0;
       let tempStart = "";
 
-      // Walk through contributions in chronological order
-      for (let i = 0; i < contributions.length; i++) {
-        const day = contributions[i];
+      // Walk through past contributions in chronological order
+      for (let i = 0; i < pastContributions.length; i++) {
+        const day = pastContributions[i];
         if (day.count > 0) {
           if (tempStreak === 0) tempStart = day.date;
           tempStreak++;
@@ -160,16 +170,16 @@ export async function GET() {
       }
 
       // Calculate current streak backwards from today/yesterday
-      let i = contributions.length - 1;
-      // Allow current day to have 0 if checked early in the morning
-      if (i >= 0 && contributions[i].count === 0 && i - 1 >= 0 && contributions[i - 1].count > 0) {
+      let i = pastContributions.length - 1;
+      // Allow current day to have 0 if checked early in the morning before user commits
+      if (i >= 0 && pastContributions[i].count === 0 && i - 1 >= 0 && pastContributions[i - 1].count > 0) {
         i--;
       }
 
-      while (i >= 0 && contributions[i].count > 0) {
-        if (current === 0) curEnd = contributions[i].date;
+      while (i >= 0 && pastContributions[i].count > 0) {
+        if (current === 0) curEnd = pastContributions[i].date;
         current++;
-        curStart = contributions[i].date;
+        curStart = pastContributions[i].date;
         i--;
       }
 

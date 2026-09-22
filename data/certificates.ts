@@ -33,6 +33,16 @@ export const CERTIFICATES: CertificateItem[] = [
     type: "award",
   },
   {
+    id: "build-with-bharat-2",
+    title: "Build With Bharat 2.0 Hackathon",
+    image: "/certificates/previews/build_with_bharat_certificate.png",
+    fileUrl: "/certificates/build_with_bharat_certificate.png",
+    issuer: "CodeVerse & NIT Delhi",
+    year: "2026",
+    type: "award",
+    detail: "National-Level Hackathon · PPT Submission Round · Team TechTwins",
+  },
+  {
     id: "india-innovates-2026",
     title: "India Innovates 2026",
     image: "/certificates/previews/New Doc 09-10-2026 00.23.png",
